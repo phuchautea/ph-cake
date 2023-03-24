@@ -15,6 +15,7 @@
         <div class="content-wrapper">
             <section class="content" style="margin-top: 15px">
                 <div class="container-fluid">
+                    @include('admin.alerts')
                     @yield('content')
                 </div>
             </section>
