@@ -28,11 +28,12 @@
                                 @foreach($categories as $category)
                                     <tr>
                                         <td style="width: 100px">
-                                            <a href="/admin/category/edit/{{ $category->id }}" class="btn btn-primary btn-sm">
+                                            <a href="/admin/category/edit/{{ $category->id }}"
+                                                class="btn btn-primary btn-sm">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="#" onclick="removeRow({{ $category->id }}, \'/admin/category/destroy\')"
-                                                class="btn btn-danger btn-sm">
+                                            <a onclick="removeRow({{ $category->id }}, '/admin/category/destroy')"
+                                                href="#" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
@@ -69,5 +70,4 @@
             </div>
         </div>
     </div>
-    <script src="/template/admin/js/category.js"></script>
 @endsection
