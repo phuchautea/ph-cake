@@ -20,7 +20,7 @@ class ManageCategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryService->getAll();
+        $categories = $this->categoryService->getAllPaginate();
         return view('admin.category.list', [
             'title' => 'Danh sách danh mục',
             'categories' => $categories,
@@ -44,7 +44,7 @@ class ManageCategoryController extends Controller
      */
     public function store(CreateFormRequest $request)
     {
-        $result = $this->categoryService->create($request);
+        $result = $this->categoryService->add($request);
         return redirect()->back();
     }
     /**

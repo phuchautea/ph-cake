@@ -3,13 +3,12 @@
 namespace App\Http\Services\Product;
 
 use App\Models\Product;
-use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class ProductService
 {
-    public function create($request)
+    public function add($request)
     {
         try {
             $price = str_replace(',', '.', $request->input('price'));
@@ -52,13 +51,20 @@ class ProductService
         }
         return true;
     }
-    public function getCategory()
-    {
-        return Category::orderBy('created_at', 'asc')->get();
-    }
     public function getAll()
     {
-        return Product::orderBy('created_at', 'asc')->paginate(5);
+        return Product::all();
+    }
+    public function getById($id)
+    {
+        return Product::find($id);
+    }
+    public function getAllPaginate()
+    {
+        return Product::paginate(5);
+    }
+    public function getByCategoryId($categoryId){
+        return Product::where('category_id', $categoryId)->get();
     }
     public function status($status = 0): string
     {

@@ -7,20 +7,23 @@ use App\Http\Requests\Product\CreateFormRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Services\Product\ProductService;
+use App\Http\Services\Category\CategoryService;
 
 class ManageProductController extends Controller
 {
     protected $productService;
-    public function __construct(ProductService $productService)
+    protected $categoryService;
+    public function __construct(ProductService $productService, CategoryService $categoryService)
     {
         $this->productService = $productService;
+        $this->categoryService = $categoryService;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = $this->productService->getAll();
+        $products = $this->productService->getAllPaginate();
         return view('admin.product.list', [
             'title' => 'Danh sách sản phẩm',
             'products' => $products,
@@ -35,7 +38,7 @@ class ManageProductController extends Controller
     {
         return view('admin.product.add', [
             'title' => 'Tạo sản phẩm',
-            'categories' => $this->productService->getCategory(),
+            'categories' => $this->categoryService->getAll(),
         ]);
     }
 
@@ -44,7 +47,7 @@ class ManageProductController extends Controller
      */
     public function store(CreateFormRequest $request)
     {
-        $result = $this->productService->create($request);
+        $result = $this->productService->add($request);
         return redirect()->back();
     }
 
@@ -64,8 +67,7 @@ class ManageProductController extends Controller
         return view('admin.product.edit', [
             'title' => 'Chỉnh sửa danh mục: ' . $product->name,
             'product' => $product,
-            'products' => $this->productService->getAll(),
-            'categories' => $this->productService->getCategory(),
+            'categories' => $this->categoryService->getAll(),
         ]);
     }
 

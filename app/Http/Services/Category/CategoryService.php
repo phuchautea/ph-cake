@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class CategoryService
 {
-    public function create($request)
+    public function add($request)
     {
         try {
             Category::create([
@@ -52,13 +52,24 @@ class CategoryService
         }
         return true;
     }
+    public function getAll()
+    {
+        return Category::all();
+    }
+    public function getById($id){
+        return Category::find($id);
+    }
+    public function getAllPaginate()
+    {
+        return Category::orderBy('created_at', 'asc')->paginate(5);
+    }
     public function getParent()
     {
         return Category::where('parent_id', 0)->get();
     }
-    public function getAll()
+    public function getBySlug($slug)
     {
-        return Category::orderBy('created_at', 'asc')->paginate(5);
+        return Category::where('slug', $slug)->first();
     }
     
     public function categoryWithParent($categories, $parent_id = 0, $char = '')
