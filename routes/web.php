@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\Users\LoginController;
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ManageCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,15 +30,15 @@ Route::middleware('auth')->group(function () {
 
         #Category routes
         Route::prefix('category')->group(function () {
-            Route::get('list', [CategoryController::class, 'index']);
+            Route::get('list', [ManageCategoryController::class, 'index']);
 
-            Route::get('add', [CategoryController::class, 'create']);
-            Route::post('store', [CategoryController::class, 'store']);
+            Route::get('add', [ManageCategoryController::class, 'create']);
+            Route::post('store', [ManageCategoryController::class, 'store']);
 
-            Route::delete('destroy', [CategoryController::class, 'destroy']);
+            Route::delete('destroy', [ManageCategoryController::class, 'destroy']);
 
-            Route::get('/edit/{category}', [CategoryController::class, 'edit']);
-            Route::post('/edit/{category}', [CategoryController::class, 'update']);
+            Route::get('/edit/{category}', [ManageCategoryController::class, 'edit']);
+            Route::post('/edit/{category}', [ManageCategoryController::class, 'update']);
         });
     });
     

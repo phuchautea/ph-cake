@@ -8,7 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Services\Category\CategoryService;
 
-class CategoryController extends Controller
+class ManageCategoryController extends Controller
 {
     protected $categoryService;
     public function __construct(CategoryService $categoryService)
@@ -25,10 +25,7 @@ class CategoryController extends Controller
             'title' => 'Danh sách danh mục',
             'categories' => $categories,
             'total_records' => $categories->total(),
-            // 'categoryWithParent' => $this->categoryService->categoryWithParent($categories),
         ])->with('categoryService', $this->categoryService);
-        //return view('admin.category.list', compact('html'))->with('categoryService', $this->categoryService);
-
     }
 
     /**
