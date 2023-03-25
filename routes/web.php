@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\Admin\ManageCategoryController;
+use App\Http\Controllers\Admin\ManageProductController;
+use App\Http\Controllers\Admin\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +42,23 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{category}', [ManageCategoryController::class, 'edit']);
             Route::post('/edit/{category}', [ManageCategoryController::class, 'update']);
         });
+
+        #Product routes
+        Route::prefix('product')->group(function () {
+            Route::get('list', [ManageProductController::class, 'index']);
+
+            Route::get('add', [ManageProductController::class, 'create']);
+            Route::post('store', [ManageProductController::class, 'store']);
+
+            Route::delete('destroy', [ManageProductController::class, 'destroy']);
+
+            Route::get('/edit/{product}', [ManageProductController::class, 'edit']);
+            Route::post('/edit/{product}', [ManageProductController::class, 'update']);
+        });
+
+        Route::prefix('images')->group(function () {
+            Route::post('upload', [ImageController::class, 'upload']);
+        });
     });
-    
 });
 
