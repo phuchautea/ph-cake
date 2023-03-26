@@ -63,8 +63,22 @@ class ProductService
     {
         return Product::paginate(5);
     }
+    public function getBySlug($slug)
+    {
+        return Product::where('slug', $slug)->first();
+    }
     public function getByCategoryId($categoryId){
         return Product::where('category_id', $categoryId)->get();
+    }
+    public function getByCategoryAndParent($categoryId){
+        return Product::where('category_id', $categoryId)
+                        ->orWhere(function ($query) use ($categoryId) {
+                            $query->whereIn('category_id', function ($query) use ($categoryId) {
+                                $query->select('id')
+                                    ->from('categories')
+                                    ->where('parent_id', $categoryId);
+                            })->where('category_id', '<>', $categoryId);
+                        })->get();
     }
     public function status($status = 0): string
     {

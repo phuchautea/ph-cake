@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\Admin\ManageCategoryController;
 use App\Http\Controllers\Admin\ManageProductController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +22,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/collections/all', [CategoryController::class, 'all']);
+Route::get('/collections/{category}', [CategoryController::class, 'getByCategorySlug']);
+
+Route::get('/product/{product}', [ProductController::class, 'getBySlug']);
+
+Route::post('/addToCart', [CartController::class, 'index']);
+Route::post('/updateCart', [CartController::class, 'update']);
+Route::get('/carts', [CartController::class, 'show']);
+Route::get('/carts/delete/{id}', [CartController::class, 'remove']);
 
 Route::get('admin/users/login', [LoginController::class, 'index'])->name('login');
 Route::post('admin/users/login/store', [LoginController::class, 'store']);
@@ -61,4 +72,5 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
+
 
