@@ -9,6 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +33,14 @@ Route::get('/product/{product}', [ProductController::class, 'getBySlug']);
 Route::post('/addToCart', [CartController::class, 'index']);
 Route::post('/updateCart', [CartController::class, 'update']);
 Route::get('/carts', [CartController::class, 'show']);
+Route::post('/order', [OrderController::class, 'store']);
 Route::get('/carts/delete/{id}', [CartController::class, 'remove']);
+
+Route::get('/pay/momoResult', [PaymentController::class, 'momoResult']);
+Route::get('/order/success', [OrderController::class, 'success']);
+Route::get('/pay/error', [PaymentController::class, 'error']);
+
+
 
 Route::get('admin/users/login', [LoginController::class, 'index'])->name('login');
 Route::post('admin/users/login/store', [LoginController::class, 'store']);
