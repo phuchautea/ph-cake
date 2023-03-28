@@ -36,7 +36,7 @@ class PaymentService
     public function MomoProcess($amount){
         return $this->momoService->Processing($amount);
     }
-    public function MomoResult(Request $request){
+    public function momoResult(Request $request){
         // Kiểm tra thêm từ WebHook như vậy ko an toàn
         $resultCode = $request->get('resultCode');
         if ($resultCode == '0')
@@ -58,9 +58,45 @@ class PaymentService
                     Session::pull('order');
                 }
             }
-            return redirect('/order/success'); // thanh toán thành công, đính kèm mã order để tra cứu, bằng session::flash
+            return redirect('/order/success');
+            // thanh toán thành công, đính kèm mã order để tra cứu, bằng session::flash
         }
         return redirect('/pay/error'); // thanh toán thất bại
+    }
+    public function ipnMomoResult(Request $request)
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $partnerCode = $data["partnerCode"];
+        $orderId = $data["orderId"];
+        $requestId = $data["requestId"];
+        $amount = $data["amount"];
+        $orderInfo = $data["orderInfo"];
+        $orderType = $data["orderType"];
+        $transId = $data["transId"];
+        $resultCode = $data["resultCode"];
+        $message = $data["message"];
+        $payType = $data["payType"];
+        $responseTime = $data["responseTime"];
+        $extraData = $data["extraData"];
+        $m2signature = $data["signature"]; //MoMo signature
+        $accessKey = env('MOMO_accessKey');
+        $secretKey = env('MOMO_secretKey');
+        //Checksum
+        $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&message=" . $message . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo .
+        "&orderType=" . $orderType . "&partnerCode=" . $partnerCode . "&payType=" . $payType . "&requestId=" . $requestId . "&responseTime=" . $responseTime .
+        "&resultCode=" . $resultCode . "&transId=" . $transId;
+
+        $partnerSignature = hash_hmac("sha256", $rawHash, $secretKey);
+
+        if ($m2signature == $partnerSignature) {
+            if ($resultCode == '0') {
+                return "Thành công";
+            } else {
+                return $message;
+            }
+        } else {
+            return "This transaction could be hacked, please check your signature and returned signature";
+        }
     }
 }
 ?>

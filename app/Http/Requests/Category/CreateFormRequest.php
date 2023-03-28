@@ -24,6 +24,7 @@ class CreateFormRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'required',
+            'image' => 'required',
             'parent_id' => 'required',
         ];
     }
@@ -32,6 +33,7 @@ class CreateFormRequest extends FormRequest
         return [
             'name.required' => 'Vui lòng nhập tên',
             'description.required' => 'Vui lòng nhập mô tả',
+            'image.required' => 'Vui lòng chọn hình ảnh',
             'parent_id.required' => 'Vui lòng chọn danh mục',
         ];
     }

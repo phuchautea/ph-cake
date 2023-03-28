@@ -15,6 +15,7 @@ class CategoryService
                 'name' => (string)$request->input('name'),
                 'slug' => Str::slug($request->input('name'), '-'),
                 'description' => (string)$request->input('description'),
+                'image' => (string)$request->input('image'),
                 'parent_id' => (string)$request->input('parent_id'),
                 'status' => "1",
             ]);

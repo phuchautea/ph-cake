@@ -30,7 +30,7 @@ class ImageController extends Controller
 
         // $path = $image->store('uploads/products'); // lưu với tên ngẫu nhiên của hàm uniqid();
 
-        $prefix = 'uploads/products';
+        $prefix = 'uploads';
         $fileName = self::normalizeFileName($image->getClientOriginalName());
         $exists = Storage::exists("public/{$prefix}/{$fileName}");
         $extension = $image->getClientOriginalExtension();

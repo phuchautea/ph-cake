@@ -17,6 +17,7 @@
                                     <th>ID</th>
                                     <th>Tên</th>
                                     <th>Slug</th>
+                                    <th>Hình</th>
                                     <th>Mô tả</th>
                                     <th>Trạng thái</th>
                                     <th>Tạo lúc</th>
@@ -52,6 +53,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $category->slug }}</td>
+                                        <td><img src="{{ $category->image }}" class="img-fluid" style="width:100px"></td>
                                         <td>{{ $category->description }}</td>
                                         <td>{!! $categoryService->status($category->status) !!}</td>
                                         <td>{{ $category->created_at }}</td>

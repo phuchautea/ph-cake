@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index(){
         return view('home', [
             'title' => 'Trang chủ',
-            'categoryParents' => $this->categoryService->getAll(),
+            'categoryParents' => $this->categoryService->getParent(),
         ]);
     }
 }

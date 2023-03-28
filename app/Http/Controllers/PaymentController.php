@@ -17,6 +17,10 @@ class PaymentController extends Controller
     {
         return $this->paymentService->momoResult($request);
     }
+    public function ipnMomoResult(Request $request)
+    {
+        return $this->paymentService->ipnMomoResult($request);
+    }
     public function error()
     {
         return view('payment.error', [
