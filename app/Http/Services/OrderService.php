@@ -30,7 +30,7 @@ class OrderService
                 'payment_status' => $order['payment_status'],
                 'note' => $order['note'],
                 'total_price' => $order['total_price'],
-                'status' => "1",
+                'status' => $order['status'],
             ]);
             Session::flash('orderCode', $newOrder->code); //đính kèm mã order để tra cứu đơn hàng
             return $newOrder->id;
@@ -47,18 +47,13 @@ class OrderService
         }
         return false;
     }
-    public function update($category, $request): bool
+    public function update($order, $request): bool
     {
         try {
-            if ($category->id == $request->parent_id) {
-                Session::flash('error', 'Parent_ID không được chọn chính nó');
-            } else {
-                $category->slug = Str::slug($request->name, "-");
-                $category->updated_at = time();
-                $category->fill($request->input());
-                $category->save();
-                Session::flash('success', 'Cập nhật danh mục thành công');
-            }
+            $order->updated_at = time();
+            $order->fill($request->input());
+            $order->save();
+            Session::flash('success', 'Cập nhật đơn hàng thành công');
         } catch (\Exception $err) {
             Session::flash('error', $err->getMessage());
             return false;
@@ -72,5 +67,37 @@ class OrderService
     public function getById($id)
     {
         return Order::find($id);
+    }
+    public function getAllPaginate()
+    {
+        return Order::orderBy('created_at', 'desc')->paginate(10);
+    }
+    public function getAllInfoPaginate(){
+        return Order::with('customer', 'orderDetails')->orderBy('created_at', 'desc')->paginate(10);
+    }
+    public function status($status = 0): string
+    {
+        switch ($status) {
+            case 1:
+                return '<span class="btn btn-primary btn-xs">ĐANG LÀM</span>';
+                break;
+            case 2:
+                return '<span class="btn btn-warning btn-xs">ĐANG GIAO</span>';
+                break;
+            case 3:
+                return '<span class="btn btn-success btn-xs">HOÀN THÀNH</span>';
+                break;
+            case 4:
+                return '<span class="btn btn-danger btn-xs">ĐÃ HỦY</span>';
+                break;
+            default:
+                return '<span class="btn btn-info btn-xs">CHỜ XÁC NHẬN</span>';
+                break;
+        }
+    }
+    public function payment_status($status = 0): string
+    {
+        return $status == 'paid' ? '<span class="btn btn-success btn-xs">ĐÃ THANH TOÁN</span>'
+        : '<span class="btn btn-danger btn-xs">CHƯA THANH TOÁN</span>';
     }
 }

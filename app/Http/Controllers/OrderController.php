@@ -92,7 +92,7 @@ class OrderController extends Controller
             $order = Session::get("order"); // lưu thông tin về order
             $order['note'] = $note;
             $order['payment_method'] = $payment;
-            $order['payment_status'] = 'pending';
+            $order['payment_status'] = 'unpaid';
             $order['total_price'] = $total_price;
             Session::put("order", $order);
             // thêm phương thức thanh toán vào session['payment'] và chuyển tới phương thức thanh toán
@@ -105,6 +105,7 @@ class OrderController extends Controller
                 default:
                     $customer_id = $this->customerService->add(Session::get("customer")); // Thêm vào customer
                     $order['customer_id'] = $customer_id;
+                    $order['status'] = '0';
                     if ($customer_id != 0) {
                         $order_id = $this->orderService->add($order); // Thêm vào order
                         if ($order_id != 0) {

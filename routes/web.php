@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\Admin\ManageCategoryController;
 use App\Http\Controllers\Admin\ManageProductController;
+use App\Http\Controllers\Admin\ManageOrderController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
@@ -50,7 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->middleware('checkRole:admin')->group(function () {
         Route::get('/', [MainController::class, 'index'])->name('admin');
         Route::get('main', [MainController::class, 'index']);
-
+        #Order routes
+        Route::prefix('order')->group(function () {
+            Route::get('list', [ManageOrderController::class, 'index']);
+            Route::post('/edit/{order}', [ManageOrderController::class, 'update']);
+        });
         #Category routes
         Route::prefix('category')->group(function () {
             Route::get('list', [ManageCategoryController::class, 'index']);

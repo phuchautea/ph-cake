@@ -190,15 +190,15 @@
                                                         <div class="col-md-10">
                                                             <div class="custom-control custom-radio">
                                                                 <input id="cash" name="payment" type="radio" class="custom-control-input" required="" value="cash">
-                                                                <label class="custom-control-label" for="cash">Tiền mặt</label>
+                                                                <label class="custom-control-label" for="cash"><img style="width:30px" src="/storage/images/payment/cash.png"> Tiền mặt</label>
                                                             </div>
                                                             <div class="custom-control custom-radio">
                                                                 <input id="momo" name="payment" type="radio" class="custom-control-input" checked="" required="" value="momo">
-                                                                <label class="custom-control-label" for="momo">MoMo</label>
+                                                                <label class="custom-control-label" for="momo"><img style="width:30px" src="/storage/images/payment/momo.png"> MoMo</label>
                                                             </div>
                                                             <div class="custom-control custom-radio">
                                                                 <input id="vnpay" name="payment" type="radio" class="custom-control-input" required="" value="vnpay">
-                                                                <label class="custom-control-label" for="vnpay">VNPay</label>
+                                                                <label class="custom-control-label" for="vnpay"><img style="width:30px" src="/storage/images/payment/vnpay.png"> VNPay</label>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -46,6 +46,7 @@ class PaymentService
             $customer_id = $this->customerService->add(Session::get("customer")); // Thêm vào customer
             $order['customer_id'] = $customer_id;
             $order['payment_status'] = 'paid';
+            $order['status'] = '1';
             if ($customer_id != 0) {
                 $order_id = $this->orderService->add($order); // Thêm vào order
                 if ($order_id != 0) {
