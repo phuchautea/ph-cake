@@ -47,6 +47,15 @@ class OrderService
         }
         return false;
     }
+    public function search($request)
+    {
+        $code = $request->input('code');
+        $category = Order::where('code', $code)->first();
+        if ($category) {
+            return Order::where('code', $code)->get();
+        }
+        return false;
+    }
     public function update($order, $request): bool
     {
         try {
@@ -68,11 +77,20 @@ class OrderService
     {
         return Order::find($id);
     }
+    public function getByCode($code)
+    {
+        return Order::where('code', $code)->get();
+    }
+    public function getByCodeInfo($code)
+    {
+        return Order::with('customer', 'orderDetails')->where('code', $code)->get();
+    }
     public function getAllPaginate()
     {
         return Order::orderBy('created_at', 'desc')->paginate(10);
     }
-    public function getAllInfoPaginate(){
+    public function getAllInfoPaginate()
+    {
         return Order::with('customer', 'orderDetails')->orderBy('created_at', 'desc')->paginate(10);
     }
     public function status($status = 0): string

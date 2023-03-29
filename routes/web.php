@@ -35,6 +35,7 @@ Route::post('/addToCart', [CartController::class, 'index']);
 Route::post('/updateCart', [CartController::class, 'update']);
 Route::get('/carts', [CartController::class, 'show']);
 Route::post('/order', [OrderController::class, 'store']);
+Route::get('/order/search/{code}', [OrderController::class, 'search']);
 Route::get('/carts/delete/{id}', [CartController::class, 'remove']);
 
 Route::get('/pay/momoResult', [PaymentController::class, 'momoResult']);
