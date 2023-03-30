@@ -78,7 +78,7 @@ class ProductService
                                     ->from('categories')
                                     ->where('parent_id', $categoryId);
                             })->where('category_id', '<>', $categoryId);
-                        })->get();
+                        })->paginate(5);
     }
     public function status($status = 0): string
     {

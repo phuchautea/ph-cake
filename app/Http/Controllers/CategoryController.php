@@ -17,7 +17,11 @@ class CategoryController extends Controller
     public function all(Request $request)
     {
         $sortby = $request->get('sortby');
-        $products = $this->productService->getAll();
+        if (empty($sortby)) {
+            $products = $this->productService->getAllPaginate();
+        } else {
+            $products = $this->productService->getAll();
+        }
 
         switch ($sortby) {
             case 'price-ascending':
@@ -59,9 +63,11 @@ class CategoryController extends Controller
     public function getByCategorySlug($categorySlug)
     {
         $category = $this->categoryService->getBySlug($categorySlug);
-        if($category != null){
+        if ($category != null) {
             return view('category.collections', [
                 'title' => 'Bộ sưu tập',
+                'category_info' => $category,
+                'categories' => $this->categoryService->getAll(),
                 'products' => $this->productService->getByCategoryAndParent($category->id),
             ]);
         }
