@@ -11,6 +11,7 @@ Mô tả: {{ $product->description }} <br>
 </form> --}}
 @extends('main')
 @section('content')
+@php $category = \App\Models\Category::find($product->category_id); @endphp
 <div id="product" class="productDetail-page">
     <div class="breadcrumb-shop">
         <div class="container-fluid">
@@ -24,8 +25,8 @@ Mô tả: {{ $product->description }} <br>
                             <meta content="1">
                         </li>
                         <li>
-                            <a href="/collections/banh-kem-san-moi-ngay" target="_self">
-                                <span>Bánh sẵn mỗi ngày</span>
+                            <a href="/collections/{{ $category->slug }}" target="_self">
+                                <span>{{ $category->name }}</span>
                             </a>
                             <meta content="2">
                         </li>
@@ -66,12 +67,12 @@ Mô tả: {{ $product->description }} <br>
                                     <ul id="sliderproduct" class="site-box-content slide_product clearfix hidden-lg hidden-md">
 
                                         <li class="product-gallery-item gallery-item current">
-                                            <img class="product-image-feature" src="{{ $product->image }}" alt=" Bánh kem size 12 ">
+                                            <img class="product-image-feature" src="{{ $product->image }}" alt="{{ $product->name }}">
                                         </li>
 
                                     </ul>
                                     <div class="hidden-sm hidden-xs">
-                                        <img class="product-image-feature" src="{{ $product->image }}" alt=" Bánh kem size 12 ">
+                                        <img class="product-image-feature" src="{{ $product->image }}" alt="{{ $product->name }}">
                                     </div>
                                     <div class="product-image__button">
                                         <div id="product-zoom-in" class="product-zoom icon-pr-fix " aria-label="Zoom in" title="Zoom in">
@@ -157,20 +158,15 @@ Mô tả: {{ $product->description }} <br>
                             <h2>Sản phẩm liên quan</h2>
                         </div>
                         <div class="content-product-list row">
+                            @foreach($related_products as $related_product)
                             <div class="col-md-4 col-sm-6 col-xs-6 pro-loop ">
                                 <div class="product-block product-resize ">
                                     <div class="product-img ">
-                                        <a href="/products/banh-con-vat" title="Bánh 12 con giáp - bánh kem sinh nhật Đà nẵng" class="image-resize ratiobox">
+                                        <a href="/product/{{ $related_product->slug }}" title="{{ $related_product->name }}" class="image-resize ratiobox">
                                             <picture>
-                                                <source media="(max-width: 480px)" data-srcset="//product.hstatic.net/200000449489/product/11.19a_80d790b93b7a4b7b8b986f08b0df1660_medium.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
-                                                <source media="(min-width: 481px) and (max-width: 767px)" data-srcset="//product.hstatic.net/200000449489/product/11.19a_80d790b93b7a4b7b8b986f08b0df1660_large.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
-                                                <source media="(min-width: 768px)" data-srcset="//product.hstatic.net/200000449489/product/11.19a_80d790b93b7a4b7b8b986f08b0df1660_grande.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
                                                 <img class="lazyload img-loop" data-sizes="auto" data-src="//product.hstatic.net/200000449489/product/11.19a_80d790b93b7a4b7b8b986f08b0df1660_grande.jpg" data-lowsrc="//product.hstatic.net/200000449489/product/11.19a_80d790b93b7a4b7b8b986f08b0df1660_grande.jpg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt=" Bánh 12 con giáp - bánh kem sinh nhật Đà nẵng " />
                                             </picture>
                                             <picture>
-                                                <source media="(max-width: 480px)" data-srcset="//product.hstatic.net/200000449489/product/1.1_f9a06a4e5a8449d889402ef45f6bb010_medium.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                                <source media="(min-width: 481px) and (max-width: 767px)" data-srcset="//product.hstatic.net/200000449489/product/1.1_f9a06a4e5a8449d889402ef45f6bb010_large.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                                <source media="(min-width: 768px)" data-srcset="//product.hstatic.net/200000449489/product/1.1_f9a06a4e5a8449d889402ef45f6bb010_grande.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                                                 <img class="img-loop img-hover lazyload" data-src="//product.hstatic.net/200000449489/product/1.1_f9a06a4e5a8449d889402ef45f6bb010_grande.jpg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt=" Bánh 12 con giáp - bánh kem sinh nhật Đà nẵng " />
                                             </picture>
                                         </a>
@@ -178,28 +174,28 @@ Mô tả: {{ $product->description }} <br>
                                             <button type="submit" title="Buy now" class="action" onclick="buy_now('1084131641')">Mua ngay<i class="fa fa-long-arrow-right"></i></button>
                                         </div>
                                         <div class="pro-price-mb">
-                                            <span class="pro-price">250,000₫</span>
+                                            <span class="pro-price">{{ number_format($related_product->price) }}₫</span>
                                         </div>
                                     </div>
                                     <div class="product-detail clearfix">
                                         <div class="box-pro-detail">
                                             <h3 class="pro-name">
-                                                <a href="/products/banh-con-vat" title="Bánh 12 con giáp">
-                                                    Bánh 12 con giáp
+                                                <a href="/product/{{ $related_product->slug }}" title="Bánh 12 con giáp">
+                                                    {{ $related_product->name }}
                                                 </a>
                                             </h3>
                                             <div class="box-pro-prices">
                                                 <p class="pro-price ">
-                                                    <span>250,000đ</span>
+                                                    <span>{{ number_format($related_product->price) }}₫</span>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
 
-
-                            <div class="col-md-4 col-sm-6 col-xs-6 pro-loop  pro-loop-lastHide ">
+                            {{-- <div class="col-md-4 col-sm-6 col-xs-6 pro-loop  pro-loop-lastHide ">
                                 <div class="product-block product-resize fixheight" style="height: 253px;">
                                     <div class="product-img ">
                                         <a href="/products/banh-kem-size-54" title="Bánh kem size 14" class="image-resize ratiobox" style="height: 210px;">
@@ -238,7 +234,7 @@ Mô tả: {{ $product->description }} <br>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

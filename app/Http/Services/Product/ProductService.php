@@ -67,6 +67,11 @@ class ProductService
     {
         return Product::where('slug', $slug)->first();
     }
+    public function getRelatedProducts($categoryId, $productId){
+        return Product::where('category_id', $categoryId)
+                        ->where('id', '!=', $productId)
+                        ->get();
+    }
     public function getByCategoryId($categoryId){
         return Product::where('category_id', $categoryId)->get();
     }
