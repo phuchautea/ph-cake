@@ -25,7 +25,7 @@ class CreateFormRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'image' => 'required',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required',
             'category_id' => 'required',
         ];
     }

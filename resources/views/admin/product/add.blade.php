@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label>Giá</label>
-                            <input type="number" class="form-control" id="price" name="price"
+                            <input type="text" class="form-control format-price" id="price" name="price"
                                 placeholder="150000">
                         </div>
                         <div class="form-group">
@@ -57,6 +57,13 @@
         </div>
     </div>
     <script type="text/javascript">
+        $(document).ready(function(){
+            $(".format-price").priceFormat({
+                limit: 13,
+                prefix: '',
+                centsLimit: 0
+            });
+        });
         $('#image_file').on('change', function() {
             let image = $('#image_file').prop('files')[0];
             let formData = new FormData();

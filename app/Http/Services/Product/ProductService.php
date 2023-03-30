@@ -11,7 +11,9 @@ class ProductService
     public function add($request)
     {
         try {
-            $price = str_replace(',', '.', $request->input('price'));
+            $price = str_replace(',', '', $request->input('price'));
+            //$price = str_replace(',', '.', $request->input('price'));
+            //$price = str_replace(',', '', $request->input('price'));
             Product::create([
                 'name' => (string)$request->input('name'),
                 'slug' => Str::slug($request->input('name'), '-'),
@@ -19,6 +21,7 @@ class ProductService
                 'image' => (string)$request->input('image'),
                 'price' => $price,
                 'category_id' => (string)$request->input('category_id'),
+                'sold_quantity' => 0,
                 'status' => "1",
             ]);
             Session::flash('success', 'Tạo sản phẩm thành công');
@@ -40,10 +43,12 @@ class ProductService
     public function update($product, $request) : bool
     {
         try {
+            $product->fill($request->input());
+            $product->price = str_replace(',', '', $request->price);
             $product->slug = Str::slug($request->name, "-");
             $product->updated_at = time();
-            $product->fill($request->input());
             $product->save();
+            
             Session::flash('success', 'Cập nhật sản phẩm thành công');
         } catch (\Exception $err) {
             Session::flash('error', $err->getMessage());
