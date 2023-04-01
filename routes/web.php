@@ -13,6 +13,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,10 +47,19 @@ Route::get('/pay/error', [PaymentController::class, 'error']);
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
-Route::get('admin/users/login', [LoginController::class, 'index'])->name('login');
-Route::post('admin/users/login/store', [LoginController::class, 'store']);
+Route::get('/account/login', [AccountController::class, 'showLoginForm'])->name('login');
+Route::get('/account/logout', [AccountController::class, 'logout'])->name('logout');
+
+Route::post('/account/login/auth', [AccountController::class, 'login']);
+
+Route::get('/account/register', [AccountController::class, 'showRegisterForm'])->name('register');
+Route::post('/account/register/store', [AccountController::class, 'register']);
+
+
 
 Route::middleware('auth')->group(function () {
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
+
     Route::prefix('admin')->middleware('checkRole:admin')->group(function () {
         Route::get('/', [MainController::class, 'index'])->name('admin');
         Route::get('main', [MainController::class, 'index']);

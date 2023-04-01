@@ -742,30 +742,30 @@ jQuery(document).ready(function(){
 		});
 	}
 	/* submit form login header*/
-	$('#header-login-panel form#customer_login').submit(function(e) { 
-		var self = $(this);
-		if($(this)[0].checkValidity() == true){
-			e.preventDefault();
-			grecaptcha.ready(function() {
-				grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action: 'submit'}).then(function(token) {
-					self.find('input[name="g-recaptcha-response"]').val(token);
-					self.unbind('submit').submit();
-				}); 
-			});
-		}
-	});
-	$('#header-recover-panel form').submit(function(e) { 
-		var self = $(this);
-		if($(this)[0].checkValidity() == true){
-			e.preventDefault();
-			grecaptcha.ready(function() {
-				grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action: 'submit'}).then(function(token) {
-					self.find('input[name="g-recaptcha-response"]').val(token);
-					self.unbind('submit').submit();
-				}); 
-			});
-		}
-	});
+	// $('#header-login-panel form#customer_login').submit(function(e) { 
+	// 	var self = $(this);
+	// 	if($(this)[0].checkValidity() == true){
+	// 		e.preventDefault();
+	// 		grecaptcha.ready(function() {
+	// 			grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action: 'submit'}).then(function(token) {
+	// 				self.find('input[name="g-recaptcha-response"]').val(token);
+	// 				self.unbind('submit').submit();
+	// 			}); 
+	// 		});
+	// 	}
+	// });
+	// $('#header-recover-panel form').submit(function(e) { 
+	// 	var self = $(this);
+	// 	if($(this)[0].checkValidity() == true){
+	// 		e.preventDefault();
+	// 		grecaptcha.ready(function() {
+	// 			grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action: 'submit'}).then(function(token) {
+	// 				self.find('input[name="g-recaptcha-response"]').val(token);
+	// 				self.unbind('submit').submit();
+	// 			}); 
+	// 		});
+	// 	}
+	// });
 });
 /*=======================================*/
 var HRT = {

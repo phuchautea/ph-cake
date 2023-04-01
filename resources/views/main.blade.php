@@ -102,6 +102,24 @@
                                             </span>
                                             <div class="header-dropdown_content">
                                                 <div class="site_account " id="siteNav-account">
+                                                    @if(Auth::check())
+                                                    <div class="header-dropdown_content">
+                                                        <div class="site_account site_account_info " id="siteNav-account">
+                                                            <div class="site_account_panel_list">
+                                                                <div class="site_account_info">
+                                                                    <header class="site_account_header">
+                                                                        <h2 class="site_account_title heading">Thông tin tài khoản</h2>
+                                                                    </header>
+                                                                    <ul>
+                                                                        <li><span>{{ Auth::user()->name }}</span></li>
+                                                                        <li><a href="/account">Tài khoản của tôi</a></li>
+                                                                        <li><a href="/account/logout">Đăng xuất</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @else
                                                     <div class="site_account_panel_list">
                                                         <div id="header-login-panel" class="site_account_panel site_account_default is-selected">
                                                             <header class="site_account_header">
@@ -109,26 +127,17 @@
                                                                 <p class="site_account_legend">Nhập email và mật khẩu của bạn:</p>
                                                             </header>
                                                             <div class="site_account_inner">
-                                                                <form accept-charset='UTF-8' action='/account/login' id='customer_login' method='post'>
-                                                                    <input name='form_type' type='hidden' value='customer_login'>
-                                                                    <input name='utf8' type='hidden' value='✓'>
-
+                                                                <form accept-charset='UTF-8' action='/account/login/auth' id='customer_login' method='post'>
+                                                                    @csrf
                                                                     <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                                        <input type="email" id="login-customer[email]" class="form__field form__field--text" name="customer[email]" required="required">
-                                                                        <label for="login-customer[email]" class="form__floating-label">Email</label>
+                                                                        <input type="email" id="email" class="form__field form__field--text" name="email" required="required">
+                                                                        <label for="email" class="form__floating-label">Email</label>
                                                                     </div>
                                                                     <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                                        <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="current-password">
-                                                                        <label for="login-customer[password]" class="form__floating-label">Mật khẩu</label>
-                                                                        <div class="sitebox-recaptcha">
-                                                                            This site is protected by reCAPTCHA and the Google
-                                                                            <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>
-                                                                            and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
-                                                                        </div>
+                                                                        <input type="password" id="password" class="form__field form__field--text" name="password" required="required" autocomplete="current-password">
+                                                                        <label for="password" class="form__floating-label">Mật khẩu</label>
                                                                     </div>
                                                                     <button type="submit" class="form__submit button dark" id="form_submit-login">Đăng nhập</button>
-
-                                                                    <input id='7909839f50ed4be48612ee4ec9668f51' name='g-recaptcha-response' type='hidden'><noscript src='https://www.google.com/recaptcha/api.js?render=6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-'></noscript><noscript>grecaptcha.ready(function() {grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action: 'submit'}).then(function(token) {document.getElementById('7909839f50ed4be48612ee4ec9668f51').value = token;});});</noscript>
                                                                 </form>
                                                                 <div class="site_account_secondary-action">
                                                                     <p>Khách hàng mới?
@@ -151,17 +160,10 @@
                                                                     <input name='utf8' type='hidden' value='✓'>
 
                                                                     <div class="form__input-wrapper form__input-wrapper--labelled">
-                                                                        <input type="email" id="recover-customer[recover_email]" class="form__field form__field--text" name="email" required="required">
-                                                                        <label for="recover-customer[recover_email]" class="form__floating-label">Email</label>
-                                                                        <div class="sitebox-recaptcha">
-                                                                            This site is protected by reCAPTCHA and the Google
-                                                                            <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>
-                                                                            and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
-                                                                        </div>
+                                                                        <input type="email" id="recover_email" class="form__field form__field--text" name="recover_email" required="required">
+                                                                        <label for="recover_email" class="form__floating-label">Email</label>
                                                                     </div>
                                                                     <button type="submit" class="form__submit button dark" id="form_submit-recover">Khôi phục</button>
-
-                                                                    <input id='4a6c3c26801a44b287a09113c47159e2' name='g-recaptcha-response' type='hidden'><noscript src='https://www.google.com/recaptcha/api.js?render=6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-'></noscript><noscript>grecaptcha.ready(function() {grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action: 'submit'}).then(function(token) {document.getElementById('4a6c3c26801a44b287a09113c47159e2').value = token;});});</noscript>
                                                                 </form>
                                                                 <div class="site_account_secondary-action">
                                                                     <p>Bạn đã nhớ mật khẩu?
@@ -171,6 +173,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 </div>
 
                                             </div>
