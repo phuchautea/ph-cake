@@ -6,7 +6,7 @@
 @endforeach --}}
 
 @section('content')
-            <section id="catagories" class="section ">  
+            <section id="catagories" class="section">  
                 <div class="container-fluid d-flex flex-wrap">
                     @foreach($categoryParents as $categoryParent)
                     <div class="home-banner-pd col-1-3">
@@ -25,119 +25,6 @@
                         </div>
                     </div>
                     @endforeach
-                    <div class="home-banner-pd col-1-3">
-                        <div class="block-banner-category d-flex position-relative">
-                            <a class="link-banner ratiobox" href="/pages/banh-kem" aria-label="Banner 1">
-                                <picture>
-                                    <source data-srcset="https://theme.hstatic.net/200000449489/1000802239/14/home_category_1_banner.jpg?v=569" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                    <img class="lazyload" data-sizes="auto" data-src="https://theme.hstatic.net/200000449489/1000802239/14/home_category_1_banner.jpg?v=569" data-lowsrc="https://theme.hstatic.net/200000449489/1000802239/14/home_category_1_banner.jpg?v=569" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Bánh Kem">
-                                </picture>
-                            </a>
-
-                            <a href="/pages/banh-kem" class="caption_banner_slide">
-                                <h3>Bánh Kem</h3>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <div class="home-banner-pd col-1-3">
-                        <div class="block-banner-category d-flex position-relative">
-                            <a class="link-banner ratiobox" href="/pages/mousse-cheese-cake" aria-label="Banner 2">
-                                <picture>
-                                    <source data-srcset="https://theme.hstatic.net/200000449489/1000802239/14/home_category_2_banner.jpg?v=569" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                    <img class="lazyload" data-sizes="auto" data-src="https://theme.hstatic.net/200000449489/1000802239/14/home_category_2_banner.jpg?v=569" data-lowsrc="https://theme.hstatic.net/200000449489/1000802239/14/home_category_2_banner.jpg?v=569" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Mousse Cheese Cake">
-                                </picture>
-                            </a>
-
-                            <a href="/pages/mousse-cheese-cake" class="caption_banner_slide">
-                                <h3>Mousse /<br>Chesse Cake</h3>
-                            </a>
-
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="home-banner-pd col-1-3">
-                        <div class="block-banner-category d-flex position-relative">
-                            <a class="link-banner ratiobox" href="/collections/cupcake" aria-label="Banner 3">
-                                <picture>
-                                    <source data-srcset="https://theme.hstatic.net/200000449489/1000802239/14/home_category_3_banner.jpg?v=569" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                    <img class="lazyload" data-sizes="auto" data-src="https://theme.hstatic.net/200000449489/1000802239/14/home_category_3_banner.jpg?v=569" data-lowsrc="https://theme.hstatic.net/200000449489/1000802239/14/home_category_3_banner.jpg?v=569" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Cupcake">
-                                </picture>
-                            </a>
-
-                            <a href="/collections/cupcake" class="caption_banner_slide">
-                                <h3>Cupcake</h3>
-                            </a>
-
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="home-banner-pd col-1-3">
-                        <div class="block-banner-category d-flex position-relative">
-                            <a class="link-banner ratiobox" href="/collections/bong-lan-trung-muoi/" aria-label="Banner 4">
-                                <picture>
-                                    <source data-srcset="https://theme.hstatic.net/200000449489/1000802239/14/home_category_4_banner.jpg?v=569" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                    <img class="lazyload" data-sizes="auto" data-src="https://theme.hstatic.net/200000449489/1000802239/14/home_category_4_banner.jpg?v=569" data-lowsrc="https://theme.hstatic.net/200000449489/1000802239/14/home_category_4_banner.jpg?v=569" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Bông Lan Trứng Muối">
-                                </picture>
-                            </a>
-
-                            <a href="/collections/bong-lan-trung-muoi/" class="caption_banner_slide">
-                                <h3>Bông Lan <br>Trứng Muối</h3>
-                            </a>
-
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="home-banner-pd col-1-3">
-                        <div class="block-banner-category d-flex position-relative">
-                            <a class="link-banner ratiobox" href="/collections/banh-ngot-do-uong" aria-label="Banner 5">
-                                <picture>
-                                    <source data-srcset="https://theme.hstatic.net/200000449489/1000802239/14/home_category_5_banner.jpg?v=569" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                    <img class="lazyload" data-sizes="auto" data-src="https://theme.hstatic.net/200000449489/1000802239/14/home_category_5_banner.jpg?v=569" data-lowsrc="https://theme.hstatic.net/200000449489/1000802239/14/home_category_5_banner.jpg?v=569" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Bánh Ngọt & Đồ Uống">
-                                </picture>
-                            </a>
-
-                            <a href="/collections/banh-ngot-do-uong" class="caption_banner_slide">
-                                <h3>Bánh Ngọt <br>& Đồ Uống</h3>
-                            </a>
-
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="home-banner-pd col-1-3">
-                        <div class="block-banner-category d-flex position-relative">
-                            <a class="link-banner ratiobox" href="/products/banh-cookie-icing/" aria-label="Banner 6">
-                                <picture>
-                                    <source data-srcset="https://theme.hstatic.net/200000449489/1000802239/14/home_category_6_banner.jpg?v=569" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                    <img class="lazyload" data-sizes="auto" data-src="https://theme.hstatic.net/200000449489/1000802239/14/home_category_6_banner.jpg?v=569" data-lowsrc="https://theme.hstatic.net/200000449489/1000802239/14/home_category_6_banner.jpg?v=569" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Cookies Icing">
-                                </picture>
-                            </a>
-
-                            <a href="/products/banh-cookie-icing/" class="caption_banner_slide">
-                                <h3>Cookies <br>Icing</h3>
-                            </a>
-
-                        </div>
-                    </div>
-
-
                 </div>
             </section>
 
