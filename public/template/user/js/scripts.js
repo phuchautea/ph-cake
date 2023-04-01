@@ -591,45 +591,45 @@ $('.ultimate-search').submit(function(e) {
 		}
 	}
 });
-var $input = $('.ultimate-search input[type="text"]');
-$input.bind('keyup change paste propertychange', function() {
-	var key = $(this).val(),
-			$parent = $(this).parents('.wpo-wrapper-search'),
-			$results = $(this).parents('.wpo-wrapper-search').find('.smart-search-wrapper');
-	if(key.indexOf('script') > -1 || key.indexOf('>') > -1){
-		alert('Tá»« khĂ³a cá»§a báº¡n cĂ³ chá»©a mĂ£ Ä‘á»™c háº¡i ! Vui lĂ²ng nháº­p láº¡i key word khĂ¡c');
-		$(this).val('');
-		$('.ultimate-search input[type="text"]').val('');
-	}
-	else{
-		if(key.length > 0 ){
-			$('.ultimate-search input[type="text"]').val($(this).val());
-			$(this).attr('data-history', key);
-			var q_follow = 'product',
-					str = '';
-			str = '/search?type=product&q='+ key + '&view=ultimate-product';
-			$.ajax({
-				url: str,
-				type: 'GET',
-				async: true,
-				success: function(data){
-					$results.find('.resultsContent').html(data);
-				}
-			})
-			if(!$('.header-action_search').hasClass('show-action')){
-				$('body').removeClass("locked-scroll");
-				$('.header-action').removeClass('show-action');
-			}
-			$(".search-bar-mobile .ultimate-search").addClass("expanded");
-			$results.fadeIn();
-		}
-		else{
-			$('.ultimate-search input[type="text"]').val($(this).val());
-			$(".search-bar-mobile .ultimate-search").removeClass("expanded");
-			$results.fadeOut();
-		}
-	}
-})
+// var $input = $('.ultimate-search input[type="text"]');
+// $input.bind('keyup change paste propertychange', function() {
+// 	var key = $(this).val(),
+// 			$parent = $(this).parents('.wpo-wrapper-search'),
+// 			$results = $(this).parents('.wpo-wrapper-search').find('.smart-search-wrapper');
+// 	if(key.indexOf('script') > -1 || key.indexOf('>') > -1){
+// 		alert('Tá»« khĂ³a cá»§a báº¡n cĂ³ chá»©a mĂ£ Ä‘á»™c háº¡i ! Vui lĂ²ng nháº­p láº¡i key word khĂ¡c');
+// 		$(this).val('');
+// 		$('.ultimate-search input[type="text"]').val('');
+// 	}
+// 	else{
+// 		if(key.length > 0 ){
+// 			$('.ultimate-search input[type="text"]').val($(this).val());
+// 			$(this).attr('data-history', key);
+// 			var q_follow = 'product',
+// 					str = '';
+// 			str = '/search?type=product&q='+ key + '&view=ultimate-product';
+// 			$.ajax({
+// 				url: str,
+// 				type: 'GET',
+// 				async: true,
+// 				success: function(data){
+// 					$results.find('.resultsContent').html(data);
+// 				}
+// 			})
+// 			if(!$('.header-action_search').hasClass('show-action')){
+// 				$('body').removeClass("locked-scroll");
+// 				$('.header-action').removeClass('show-action');
+// 			}
+// 			$(".search-bar-mobile .ultimate-search").addClass("expanded");
+// 			$results.fadeIn();
+// 		}
+// 		else{
+// 			$('.ultimate-search input[type="text"]').val($(this).val());
+// 			$(".search-bar-mobile .ultimate-search").removeClass("expanded");
+// 			$results.fadeOut();
+// 		}
+// 	}
+// })
 $('body').click(function(evt) {
 	var target = evt.target;
 	if (target.id !== 'ajaxSearchResults' && target.id !== 'inputSearchAuto') {

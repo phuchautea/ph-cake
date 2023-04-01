@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +44,7 @@ Route::post('/pay/ipnMomoResult', [PaymentController::class, 'ipnMomoResult']);
 Route::get('/order/success', [OrderController::class, 'success']);
 Route::get('/pay/error', [PaymentController::class, 'error']);
 
-
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get('admin/users/login', [LoginController::class, 'index'])->name('login');
 Route::post('admin/users/login/store', [LoginController::class, 'store']);
