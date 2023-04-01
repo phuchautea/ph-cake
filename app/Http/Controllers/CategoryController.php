@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function all(Request $request)
     {
         $sortby = $request->get('sortby');
-        if (empty($sortby)) {
+        if (empty($sortby) || $sortby == '') {
             $products = $this->productService->getAllPaginate();
         } else {
             $products = $this->productService->getAll();
@@ -30,11 +30,11 @@ class CategoryController extends Controller
             case 'price-descending':
                 $products = $products->sortByDesc('price');
                 break;
-            case 'title-ascending':
-                $products = $products->sortBy('title');
+            case 'name-ascending':
+                $products = $products->sortBy('name');
                 break;
-            case 'title-descending':
-                $products = $products->sortByDesc('title');
+            case 'name-descending':
+                $products = $products->sortByDesc('name');
                 break;
             case 'created-ascending':
                 $products = $products->sortBy('created_at');
@@ -52,7 +52,6 @@ class CategoryController extends Controller
                 // do nothing
                 break;
         }
-
         return view('category.collections', [
             'title' => 'Bộ sưu tập',
             'categories' => $this->categoryService->getAll(),
@@ -60,15 +59,51 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function getByCategorySlug($categorySlug)
+    public function getByCategorySlug($categorySlug, Request $request)
     {
         $category = $this->categoryService->getBySlug($categorySlug);
         if ($category != null) {
+            $sortby = $request->get('sortby');
+            if (empty($sortby) || $sortby == '') {
+                $products = $this->productService->getByCategoryAndParentPaginate($category->id);
+            } else {
+                $products = $this->productService->getByCategoryAndParent($category->id);
+            }
+
+            switch ($sortby) {
+                case 'price-ascending':
+                    $products = $products->sortBy('price');
+                    break;
+                case 'price-descending':
+                    $products = $products->sortByDesc('price');
+                    break;
+                case 'name-ascending':
+                    $products = $products->sortBy('name');
+                    break;
+                case 'name-descending':
+                    $products = $products->sortByDesc('name');
+                    break;
+                case 'created-ascending':
+                    $products = $products->sortBy('created_at');
+                    break;
+                case 'created-descending':
+                    $products = $products->sortByDesc('created_at');
+                    break;
+                case 'best-selling':
+                    $products = $products->sortByDesc('sold_quantity');
+                    break;
+                case 'quantity-descending':
+                    $products = $products->sortByDesc('quantity');
+                    break;
+                default:
+                    // do nothing
+                    break;
+            }
             return view('category.collections', [
                 'title' => 'Bộ sưu tập',
                 'category_info' => $category,
                 'categories' => $this->categoryService->getAll(),
-                'products' => $this->productService->getByCategoryAndParent($category->id),
+                'products' => $products,
             ]);
         }
         return redirect()->route('home');

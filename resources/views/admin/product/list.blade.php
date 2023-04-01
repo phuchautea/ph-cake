@@ -46,7 +46,7 @@
                                         <td>{{ number_format($product->price) }}đ</td>
                                         <?php $category = \App\Models\Category::find($product->category_id); ?>
                                         <td>{{ $category->name }}</td>
-                                        <td>{{ $product->description }}</td>
+                                        <td><textarea rows="3" class="form-control">{{ $product->description }}</textarea></td>
                                         <td>{!! $productService->status($product->status) !!}</td>
                                         <td>{{ $product->created_at }}</td>
                                         <td>{{ $product->updated_at }}</td>

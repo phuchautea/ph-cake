@@ -88,7 +88,18 @@ class ProductService
                                     ->from('categories')
                                     ->where('parent_id', $categoryId);
                             })->where('category_id', '<>', $categoryId);
-                        })->paginate(5);
+                        })->get();
+    }
+    public function getByCategoryAndParentPaginate($categoryId)
+    {
+        return Product::where('category_id', $categoryId)
+            ->orWhere(function ($query) use ($categoryId) {
+                $query->whereIn('category_id', function ($query) use ($categoryId) {
+                    $query->select('id')
+                        ->from('categories')
+                        ->where('parent_id', $categoryId);
+                })->where('category_id', '<>', $categoryId);
+            })->paginate(5);
     }
     public function status($status = 0): string
     {
