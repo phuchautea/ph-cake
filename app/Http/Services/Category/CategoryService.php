@@ -68,6 +68,10 @@ class CategoryService
     {
         return Category::where('parent_id', 0)->get();
     }
+    public function getSub($parent_id)
+    {
+        return Category::where('parent_id', $parent_id)->get();
+    }
     public function getBySlug($slug)
     {
         return Category::where('slug', $slug)->first();
