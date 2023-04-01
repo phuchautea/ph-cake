@@ -300,7 +300,7 @@
             </header>
         </div>
 
-        <main class="mainContent-theme main-index">
+        <main class="mainContent-theme">
 
             @yield('content')
 
