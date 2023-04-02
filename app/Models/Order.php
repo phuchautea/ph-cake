@@ -19,7 +19,8 @@ class Order extends Model
         'user_id',
         'name',
         'phoneNumber',
-        'address'
+        'address',
+        'email'
     ];
     public function customer()
     {

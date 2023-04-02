@@ -57,6 +57,10 @@ class OrderController extends Controller
         $pattern = '/^(\\+?84|0)(86|96|97|98|32|33|34|35|36|37|38|39|91|94|83|84|85|81|82|90|93|70|79|77|76|78|92|56|58|99|59|55|87)\\d{7}$/';
         return preg_match($pattern, $phoneNumber);
     }
+    private function isEmail($email){
+        $pattern = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
+        return preg_match($pattern, $email);
+    }
     public function store(Request $request)
     {
         
@@ -64,6 +68,7 @@ class OrderController extends Controller
         $name = (string)$request->input('name');
         $phoneNumber = (string)$request->input('phoneNumber');
         $address = (string)$request->input('address');
+        $email = (string)$request->input('email');
         $note = (string)$request->input('note');
         $payment = (string)$request->input('payment');
         Auth::check() ? $user_id = Auth::user()->id : $user_id = null;
@@ -77,6 +82,9 @@ class OrderController extends Controller
         }
         if (self::isValidVietnamMobilePhoneNumber($phoneNumber) == false) {
             $errors['phoneNumber'] = "Số điện thoại không hợp lệ";
+        }
+        if (self::isEmail($email) == false) {
+            $errors['email'] = "Email không hợp lệ";
         }
         if (!$address) {
             $errors['address'] = "Vui lòng nhập địa chỉ";
@@ -92,6 +100,7 @@ class OrderController extends Controller
             $customer['name'] = $name;
             $customer['phoneNumber'] = $phoneNumber;
             $customer['address'] = $address;
+            $customer['email'] = $email;
             
             Session::put("customer", $customer);
             // Lấy tổng tiền từ giỏ hàng
@@ -113,6 +122,7 @@ class OrderController extends Controller
             $order['name'] = $name;
             $order['phoneNumber'] = $phoneNumber;
             $order['address'] = $address;
+            $order['email'] = $email;
             Session::put("order", $order);
             // thêm phương thức thanh toán vào session['payment'] và chuyển tới phương thức thanh toán
             switch ($payment) {

@@ -34,7 +34,8 @@ class OrderService
                 'user_id' => $order['user_id'],
                 'name' => $order['name'],
                 'phoneNumber' => $order['phoneNumber'],
-                'address' => $order['address']
+                'address' => $order['address'],
+                'email' => $order['email']
             ]);
             Session::flash('orderCode', $newOrder->code); //đính kèm mã order để tra cứu đơn hàng
             return $newOrder->id;
