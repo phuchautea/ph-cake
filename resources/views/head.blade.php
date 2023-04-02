@@ -1,8 +1,8 @@
     <meta charset="UTF-8" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport' />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="shortcut icon" href="/template/user/images/logo.png" type="image/png" />
-    <title>PHCake</title>
+    <link rel="shortcut icon" href="/storage/images/favicon.ico" />
+    <title>{{ config('app.name') }}</title>
     <meta name="description" content="PHCake mang đến cho bạn các loại bánh tươi ngon, bánh kem, bánh bông lan, bánh cuốn, bánh tráng miệng và nhiều loại bánh khác với nhiều hương vị khác nhau." />
     <meta name="keywords" content="PHCake">
     <meta name="robots" content="index,follow,noodp">
