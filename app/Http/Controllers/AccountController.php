@@ -73,10 +73,14 @@ class AccountController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'phone' => 'required|numeric|unique:users,phone',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
         ], [
             'name.required' => 'Bạn chưa nhập tên người dùng',
+            'phone.required' => 'Bạn chưa nhập số điện thoại',
+            'phone.numeric' => 'Số điện thoại không đúng định dạng',
+            'phone.unique' => 'Số điện thoại đã tồn tại',
             'email.required' => 'Bạn chưa nhập email',
             'email.email' => 'Email không đúng định dạng',
             'email.unique' => 'Email đã tồn tại',
@@ -87,6 +91,7 @@ class AccountController extends Controller
 
         $user = new User();
         $user->name = $request->name;
+        $user->phone = $request->phone;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = 'customer';

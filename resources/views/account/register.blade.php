@@ -25,6 +25,13 @@
                             </div>
 
                             <div class="clearfix large_form">
+                                <label for="phone" class="icon-field"><i
+                                        class="icon-login icon-phone "></i></label>
+                                <input required="" type="text" value="" name="phone" id="phone"
+                                    placeholder="Số điện thoại" class="text">
+                            </div>
+
+                            <div class="clearfix large_form">
                                 <label for="email" class="icon-field"><i
                                         class="icon-login icon-envelope "></i></label>
                                 <input required="" type="email" value="" name="email" id="email"
