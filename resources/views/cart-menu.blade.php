@@ -40,7 +40,7 @@
                             <div class="cart-ttbold">
                                 <p class="ttbold">Giỏ hàng</p>
                             </div>
-                            @if($productCarts->count() > 0)
+                            @if($productCarts != null && $productCarts->count() > 0)
                             <div class="cart-view clearfix">
                                 <div class="cart-view-scroll">
                                     <table id="cart-view">
