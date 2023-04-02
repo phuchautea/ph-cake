@@ -20,6 +20,12 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
+                        <a href="/admin" class="nav-link">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>Thống kê</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/admin/order/list" class="nav-link">
                             <i class="nav-icon fas fa-sticky-note"></i>
                             <p>Đơn hàng</p>

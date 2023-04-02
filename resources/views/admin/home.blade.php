@@ -5,42 +5,39 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        <b>Danh sách nhân viên</b><br>
-                        <span type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#add_modal">
-                            <i class="fa fa-plus"></i> Thêm mới
-                        </span>
+                        <b>Thống kê</b>
                     </h3>
                 </div>
                 <div class="card-body">
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-head-fixed text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Hành động</th>
-                                    <th>Mã NV</th>
-                                    <th>Tên NV</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <button type="button" class="btn btn-warning btn-xs">
-                                            <i class="fa fa-edit"></i> Sửa
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-xs">
-                                            <i class="fa fa-times"></i> Xóa
-                                        </button>
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        Hoàng Phúc Hậu
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <script src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+                        google.charts.load('current', {
+                            'packages': ['corechart']
+                        });
+                        google.charts.setOnLoadCallback(function() { 
+                            drawChart(<?php echo json_encode($salesStatistics); ?>, 'Doanh thu theo tháng (VND)', 'salesStatisticsChart', 'LineChart');
+                            drawChart(<?php echo json_encode($soldQuantityStatistics); ?>, 'Sản phẩm bán chạy', 'soldQuantityStatisticsChart', 'ColumnChart');
+                            drawChart(<?php echo json_encode($paymentMethodStatistics); ?>, 'Phương thức thanh toán', 'paymentMethodStatisticsChart', 'PieChart');
+                        });
+
+                        function drawChart(chartData, title, chartId, typeChart = 'ColumnChart') {
+                            var data = google.visualization.arrayToDataTable(chartData);
+
+                            var options = {
+                                title: title,
+                                curveType: 'function',
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            };
+
+                            var chart = new google.visualization[typeChart](document.getElementById(chartId));
+                            chart.draw(data, options);
+                        }
+                    </script>
+                    <div id="salesStatisticsChart"></div>
+                    <div id="soldQuantityStatisticsChart"></div>
+                    <div id="paymentMethodStatisticsChart"></div>
                 </div>
             </div>
         </div>
