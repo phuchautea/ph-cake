@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -10,9 +11,16 @@ use App\Models\User;
 
 class AccountController extends Controller
 {
+    protected $orderService;
+    public function __construct(OrderService $orderService){
+        $this->orderService = $orderService;
+    }
     public function index(){
+        $myOrders = $this->orderService->getByUserId(Auth::User()->id);
         return view('account.index', [
-            'title' => 'Tài khoản của bạn'
+            'title' => 'Tài khoản của bạn',
+            'orders' => $myOrders,
+            'orderService' => $this->orderService
         ]);
     }
     public function showLoginForm(){

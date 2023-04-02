@@ -28,7 +28,37 @@
                     </div>
                     <div class="col-xs-12 customer-table-wrap" id="customer_orders">
                         <div class="customer_order customer-table-bg">
+                            @if($orders->count() > 0)
+							<p class="title-detail">
+								Danh sách đơn hàng mới nhất
+							</p>
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="order_number text-center">Mã đơn hàng</th>
+											<th class="date text-center">Ngày đặt</th>
+											<th class="total text-right">Thành tiền</th>
+											<th class="payment_status text-center">Thanh toán</th>
+											<th class="fulfillment_status text-center">Trạng thái</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach($orders as $order)
+										<tr class="odd ">
+											<td class="text-center"><a href="/order/search/{{ $order->code }}" title="">#{{ $order->code }}</a></td>
+											<td class="text-center"><span>{{ $order->created_at }}</span></td>
+											<td class="text-right"><span class="total money">{{ number_format($order->total_price) }}đ</span></td>
+											<td class="text-center">{!! $orderService->payment_status($order->payment_status) !!}</td>
+											<td class="text-center">{!! $orderService->status($order->status) !!}</td>
+										</tr>
+										@endforeach
+									</tbody>
+								</table>
+							</div>
+                            @else
                             <p>Bạn chưa đặt mua sản phẩm.</p>
+                            @endif
                         </div>
                     </div>
                 </div>

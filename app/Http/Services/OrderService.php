@@ -85,6 +85,10 @@ class OrderService
     {
         return Order::where('code', $code)->get();
     }
+    public function getByUserId($user_id)
+    {
+        return Order::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
+    }
     public function getByCodeInfo($code)
     {
         return Order::with('customer', 'orderDetails')->where('code', $code)->get();
