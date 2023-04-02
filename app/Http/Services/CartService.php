@@ -55,7 +55,7 @@ class CartService
             return [];
         }
         $productIds = array_keys($carts);
-        return Product::select('id', 'name', 'price', 'image')
+        return Product::select('id', 'name', 'price', 'image', 'slug')
             ->where('status', '1')
             ->whereIn('id', $productIds)
             ->get();
