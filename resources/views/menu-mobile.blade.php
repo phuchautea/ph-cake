@@ -21,10 +21,10 @@
                                                             <div class="mp-level" data-level="1">
                                                                 <div class="mplus-menu">
                                                                     <ul class="mm-panel vertical-menu-list list-root">
-                                                                        <li class="active">
+                                                                        <li class="">
                                                                             <a class="parent" href="/">Trang chủ</a>
                                                                         </li>
-                                                                        <li class="" data-menu-root="103781917">
+                                                                        <li class="">
                                                                             <a class="parent" href="/collections/all">Sản phẩm
                                                                                 <i>
                                                                                     <svg class="icon icon--arrow-right" viewBox="0 0 8 12" role="presentation">
@@ -34,10 +34,13 @@
                                                                             </a>
                                                                         </li>
                                                                         <li class="">
-                                                                            <a class="parent" href="/blogs/news">Blog</a>
+                                                                            <a class="parent" href="/blogs/">Blog</a>
                                                                         </li>
                                                                         <li class="">
-                                                                            <a class="parent" href="/pages/about-us">Giới thiệu</a>
+                                                                            <a class="parent" href="/page/about">Giới thiệu</a>
+                                                                        </li>
+                                                                        <li class="">
+                                                                            <a class="parent" href="/page/store">Cửa hàng</a>
                                                                         </li>
                                                                         <li class="mm-divider">
                                                                             <div class="mobile-menu__section mobile-menu__section--loose">

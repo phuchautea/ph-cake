@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ManageOrderController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
@@ -55,7 +56,7 @@ Route::post('/account/login/auth', [AccountController::class, 'login']);
 Route::get('/account/register', [AccountController::class, 'showRegisterForm'])->name('register');
 Route::post('/account/register/store', [AccountController::class, 'register']);
 
-
+Route::get('/page/store', [PageController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/account', [AccountController::class, 'index'])->name('account');

@@ -3,7 +3,7 @@
                                     <div id="nav">
                                         <nav class="main-nav text-center">
                                             <ul class="clearfix">
-                                                <li class="active">
+                                                <li>
                                                     <a href="/" title="Trang chủ">
                                                         Trang chủ
                                                     </a>
@@ -15,8 +15,13 @@
                                                     </a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="/about-us" title="Giới thiệu">
+                                                    <a href="/page/about" title="Giới thiệu">
                                                         Giới thiệu
+                                                    </a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="/page/store" title="Cửa hàng">
+                                                        Cửa hàng
                                                     </a>
                                                 </li>
                                             </ul>
