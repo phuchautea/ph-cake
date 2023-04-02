@@ -24,7 +24,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Using class based composers...
-        View::composer('navbar', CartComposer::class);
+        View::composer('cart-menu', CartComposer::class);
         View::composer('category-menu', MenuComposer::class);
 
         // Using closure based composers...

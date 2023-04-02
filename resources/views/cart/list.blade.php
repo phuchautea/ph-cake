@@ -138,7 +138,7 @@
                             </div>
                             @else
                             <div class="expanded-message">
-                                <p class="cart-empty">Giỏ hàng của bạn đang trống</p>
+                                <p class="cart-empty text-center" style="color:red">Giỏ hàng của bạn đang trống</p>
                             </div>
                             @endif
                         </div>
