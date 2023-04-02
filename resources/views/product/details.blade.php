@@ -1,14 +1,3 @@
-{{-- Chi tiết sản phẩm: {{ $product->slug }}<hr>
-Tên: {{ $product->name }} <br>
-Giá: {{ number_format($product->price) }}đ <br>
-Mô tả: {{ $product->description }} <br>
-<img src="{{ $product->image }}" class="img-fluid" width="100px"> <br>
-<form method="post" action="/addToCart">
-    <input class="form-control" type="number" min="1" value="1" name="quantity">
-    <input type="hidden" name="product_id" value="{{ $product->id }}">
-    <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
-    @csrf
-</form> --}}
 @extends('main')
 @section('content')
 @php $category = \App\Models\Category::find($product->category_id); @endphp
@@ -49,27 +38,21 @@ Mô tả: {{ $product->description }} <br>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="row product-detail-main pr_style_03">
                         <div class="col-md-5 col-sm-12 col-xs-12 product-content-img">
-
-
                             <div class="product-gallery">
                                 <div class="product-gallery__thumbs-container hidden-sm hidden-xs">
                                     <div class="product-gallery__thumbs thumb-fix">
-
                                         <div class="product-gallery__thumb active">
                                             <a class="product-gallery__thumb-placeholder" href="javascript:" data-image="{{ $product->image }}" data-zoom-image="{{ $product->image }}">
                                                 <img alt="{{ $product->name }}" data-image="{{ $product->image }}" src="{{ $product->image }}" style="width:30%">
                                             </a>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="product-image-detail box__product-gallery scroll">
                                     <ul id="sliderproduct" class="site-box-content slide_product clearfix hidden-lg hidden-md">
-
                                         <li class="product-gallery-item gallery-item current">
                                             <img class="product-image-feature" src="{{ $product->image }}" alt="{{ $product->name }}">
                                         </li>
-
                                     </ul>
                                     <div class="hidden-sm hidden-xs">
                                         <img class="product-image-feature" src="{{ $product->image }}" alt="{{ $product->name }}">
@@ -89,21 +72,13 @@ Mô tả: {{ $product->description }} <br>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="col-md-7 col-sm-12 col-xs-12 product-content-desc" id="detail-product">
                             <div class="product-title">
                                 <h1>{{ $product->name }}</h1>
-
-
                             </div>
                             <div class="product-price" id="price-preview">
-
-
                                 <span class="pro-price">{{ number_format($product->price) }}đ</span>
-
-
                             </div>
 
                             <form id="add-item-form" action="/addToCart" method="post" class="variants clearfix">
@@ -117,10 +92,8 @@ Mô tả: {{ $product->description }} <br>
                                     </select>
                                 </div>
                                 <div class="select-swatch clearfix">
-
                                 </div>
                                 <div class="selector-actions">
-
                                     <div class="quantity-area clearfix">
                                         <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
                                         <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
@@ -130,16 +103,6 @@ Mô tả: {{ $product->description }} <br>
                                         <button type="submit" class="add-to-cartProduct button dark btn-addtocart addtocart-modal">Thêm vào giỏ hàng</button>
                                     </div>
                                 </div>
-
-
-                                {{-- <div class="product-action-bottom visible-xs">
-                                    <div class="input-bottom">
-                                        <input id="quan-input" type="number" value="1" min="1">
-                                    </div>
-                                    <button type="button" id="add-to-cartbottom" class=" add-to-cartProduct add-cart-bottom button dark addtocart-modal" name="add">
-                                        Thêm vào giỏ
-                                    </button>
-                                </div> --}}
                             </form>
                             <div class="product-description">
                                 <div class="title-bl">
@@ -159,20 +122,17 @@ Mô tả: {{ $product->description }} <br>
                         </div>
                         <div class="content-product-list row">
                             @foreach($related_products as $related_product)
-                            <div class="col-md-4 col-sm-6 col-xs-6 pro-loop ">
+                            <div class="col-md-4 col-sm-6 col-xs-6 pro-loop">
                                 <div class="product-block product-resize ">
                                     <div class="product-img ">
                                         <a href="/product/{{ $related_product->slug }}" title="{{ $related_product->name }}" class="image-resize ratiobox">
                                             <picture>
-                                                <img class="lazyload img-loop" data-sizes="auto" data-src="//product.hstatic.net/200000449489/product/11.19a_80d790b93b7a4b7b8b986f08b0df1660_grande.jpg" data-lowsrc="//product.hstatic.net/200000449489/product/11.19a_80d790b93b7a4b7b8b986f08b0df1660_grande.jpg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt=" Bánh 12 con giáp - bánh kem sinh nhật Đà nẵng " />
+                                                <img class="lazyload img-loop" data-sizes="auto" data-src="{{ $related_product->image }}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
                                             </picture>
                                             <picture>
-                                                <img class="img-loop img-hover lazyload" data-src="//product.hstatic.net/200000449489/product/1.1_f9a06a4e5a8449d889402ef45f6bb010_grande.jpg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt=" Bánh 12 con giáp - bánh kem sinh nhật Đà nẵng " />
+                                                <img class="img-loop img-hover lazyload" data-src="{{ $related_product->image }}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
                                             </picture>
                                         </a>
-                                        <div class="button-add hidden">
-                                            <button type="submit" title="Buy now" class="action" onclick="buy_now('1084131641')">Mua ngay<i class="fa fa-long-arrow-right"></i></button>
-                                        </div>
                                         <div class="pro-price-mb">
                                             <span class="pro-price">{{ number_format($related_product->price) }}₫</span>
                                         </div>
@@ -180,7 +140,7 @@ Mô tả: {{ $product->description }} <br>
                                     <div class="product-detail clearfix">
                                         <div class="box-pro-detail">
                                             <h3 class="pro-name">
-                                                <a href="/product/{{ $related_product->slug }}" title="Bánh 12 con giáp">
+                                                <a href="/product/{{ $related_product->slug }}">
                                                     {{ $related_product->name }}
                                                 </a>
                                             </h3>
@@ -194,48 +154,6 @@ Mô tả: {{ $product->description }} <br>
                                 </div>
                             </div>
                             @endforeach
-
-                            {{-- <div class="col-md-4 col-sm-6 col-xs-6 pro-loop  pro-loop-lastHide ">
-                                <div class="product-block product-resize fixheight" style="height: 253px;">
-                                    <div class="product-img ">
-                                        <a href="/products/banh-kem-size-54" title="Bánh kem size 14" class="image-resize ratiobox" style="height: 210px;">
-                                            <picture>
-                                                <source media="(max-width: 480px)" data-srcset="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_medium.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                                <source media="(min-width: 481px) and (max-width: 767px)" data-srcset="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_large.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                                <source media="(min-width: 768px)" data-srcset="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_grande.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                                <img class="lazyload img-loop" data-sizes="auto" data-src="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_grande.jpg" data-lowsrc="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_grande.jpg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt=" Bánh kem size 14 ">
-                                            </picture>
-                                            <picture>
-                                                <source media="(max-width: 480px)" data-srcset="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_medium.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                                <source media="(min-width: 481px) and (max-width: 767px)" data-srcset="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_large.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                                <source media="(min-width: 768px)" data-srcset="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_grande.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                                                <img class="img-loop img-hover lazyload" data-src="//product.hstatic.net/200000449489/product/66_358585cfc5f34c13a18ad2836b4324f3_grande.jpg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt=" Bánh kem size 14 ">
-                                            </picture>
-                                        </a>
-                                        <div class="button-add hidden">
-                                            <button type="submit" title="Buy now" class="action" onclick="buy_now('1100388884')">Mua ngay<i class="fa fa-long-arrow-right"></i></button>
-                                        </div>
-                                        <div class="pro-price-mb">
-                                            <span class="pro-price">200,000₫</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-detail clearfix">
-                                        <div class="box-pro-detail">
-                                            <h3 class="pro-name">
-                                                <a href="/products/banh-kem-size-54" title="Bánh kem size 14">
-                                                    Bánh kem size 14
-                                                </a>
-                                            </h3>
-                                            <div class="box-pro-prices">
-                                                <p class="pro-price ">
-                                                    <span>200,000₫</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
@@ -260,27 +178,7 @@ Mô tả: {{ $product->description }} <br>
     <button id="closedivZoom"><i></i></button>
 </div>
 <script>
-    $(document).ready(function() {
-        $('#add-to-cart').click(function(e) {
-            e.preventDefault();
-            $(this).addClass('clicked_buy');
-            add_item_show_modalCart($('#product-select').val());
-            //getCartModal();
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $('#add-to-cartbottom').click(function() {
-            $('#add-to-cart').trigger('click');
-        });
-        $('#quan-input').keyup(function() {
-            $('[name="quantity"]').val($(this).val());
-        })
-        $('[name="quantity"]').on('keyup change', function() {
-            $('#quan-input').val($(this).val());
-        })
-    });
+    
     $(document).on("click", "#product-zoom-in", function() {
         //	var indexThumb = $(this).index();
         $("body").addClass("open_layer");
@@ -380,192 +278,6 @@ Mô tả: {{ $product->description }} <br>
     jQuery(document).ready(function($) {
 
 
-    });
-</script>
-<script>
-    var swatch_size = parseInt($('#add-item-form .select-swatch').children().size());
-    jQuery(document).on('click', '#add-item-form .swatch input', function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var _available = '';
-        $this.parent().siblings().find('label').removeClass('sd');
-        $this.next().addClass('sd');
-        var name = $this.attr('name');
-        var value = $this.val();
-        $('#add-item-form select[data-option=' + name + ']').val(value).trigger('change');
-        if (swatch_size == 2) {
-            if (name.indexOf('1') != -1) {
-                $('#add-item-form #variant-swatch-1 .swatch-element').find('input').prop('disabled', false);
-                $('#add-item-form #variant-swatch-2 .swatch-element').find('input').prop('disabled', false);
-                $('#add-item-form #variant-swatch-1 .swatch-element label').removeClass('sd');
-                $('#add-item-form #variant-swatch-1 .swatch-element').removeClass('soldout');
-                $('#add-item-form .selector-wrapper .single-option-selector').eq(1).find('option').each(function() {
-                    var _tam = $(this).val();
-                    $(this).parent().val(_tam).trigger('change');
-                    if (check_variant) {
-                        if (_available == '') {
-                            _available = _tam;
-                        }
-                    } else {
-                        $('#add-item-form #variant-swatch-1 .swatch-element[data-value="' + _tam + '"]').addClass('soldout');
-                        $('#add-item-form #variant-swatch-1 .swatch-element[data-value="' + _tam + '"]').find('input').prop('disabled', true);
-                    }
-                })
-                $('#add-item-form .selector-wrapper .single-option-selector').eq(1).val(_available).trigger('change');
-                $('#add-item-form #variant-swatch-1 .swatch-element[data-value="' + _available + '"] label').addClass('sd');
-            }
-        } else if (swatch_size == 3) {
-            var _count_op2 = $('#add-item-form #variant-swatch-1 .swatch-element').size();
-            var _count_op3 = $('#add-item-form #variant-swatch-2 .swatch-element').size();
-            if (name.indexOf('1') != -1) {
-                $('#add-item-form #variant-swatch-1 .swatch-element').find('input').prop('disabled', false);
-                $('#add-item-form #variant-swatch-2 .swatch-element').find('input').prop('disabled', false);
-                $('#add-item-form #variant-swatch-1 .swatch-element label').removeClass('sd');
-                $('#add-item-form #variant-swatch-1 .swatch-element').removeClass('soldout');
-                $('#add-item-form #variant-swatch-2 .swatch-element label').removeClass('sd');
-                $('#add-item-form #variant-swatch-2 .swatch-element').removeClass('soldout');
-                var _avi_op1 = '';
-                var _avi_op2 = '';
-                $('#add-item-form #variant-swatch-1 .swatch-element').each(function(ind, value) {
-                    var _key = $(this).data('value');
-                    var _unavi = 0;
-                    $('#add-item-form .single-option-selector').eq(1).val(_key).change();
-                    $('#add-item-form #variant-swatch-2 .swatch-element label').removeClass('sd');
-                    $('#add-item-form #variant-swatch-2 .swatch-element').removeClass('soldout');
-                    $('#add-item-form #variant-swatch-2 .swatch-element').find('input').prop('disabled', false);
-                    $('#add-item-form #variant-swatch-2 .swatch-element').each(function(i, v) {
-                        var _val = $(this).data('value');
-                        $('#add-item-form .single-option-selector').eq(2).val(_val).change();
-                        if (check_variant == true) {
-                            if (_avi_op1 == '') {
-                                _avi_op1 = _key;
-                            }
-                            if (_avi_op2 == '') {
-                                _avi_op2 = _val;
-                            }
-                            //console.log(_avi_op1 + ' -- ' + _avi_op2)
-                        } else {
-                            _unavi += 1;
-                        }
-                    })
-                    if (_unavi == _count_op3) {
-                        $('#add-item-form #variant-swatch-1 .swatch-element[data-value = "' + _key + '"]').addClass('soldout');
-                        setTimeout(function() {
-                            $('#add-item-form #variant-swatch-1 .swatch-element[data-value = "' + _key + '"] input').attr('disabled', 'disabled');
-                        })
-                    }
-                })
-                $('#add-item-form #variant-swatch-1 .swatch-element[data-value="' + _avi_op1 + '"] input').click();
-            } else if (name.indexOf('2') != -1) {
-                $('#add-item-form #variant-swatch-2 .swatch-element label').removeClass('sd');
-                $('#add-item-form #variant-swatch-2 .swatch-element').removeClass('soldout');
-                $('#add-item-form #variant-swatch-2 .swatch-element').find('input').prop('disabled', false);
-                $('#add-item-form .selector-wrapper .single-option-selector').eq(2).find('option').each(function() {
-                    var _tam = $(this).val();
-                    $(this).parent().val(_tam).trigger('change');
-                    if (check_variant) {
-                        if (_available == '') {
-                            _available = _tam;
-                        }
-                    } else {
-                        $('#add-item-form #variant-swatch-2 .swatch-element[data-value="' + _tam + '"]').addClass('soldout');
-                        $('#add-item-form #variant-swatch-2 .swatch-element[data-value="' + _tam + '"]').find('input').prop('disabled', true);
-                    }
-                })
-                $('#add-item-form .selector-wrapper .single-option-selector').eq(2).val(_available).trigger('change');
-                $('#add-item-form #variant-swatch-2 .swatch-element[data-value="' + _available + '"] label').addClass('sd');
-            }
-        } else {
-
-        }
-    })
-    $(document).ready(function() {
-        var _chage = '';
-        $('#add-item-form .swatch-element[data-value="' + $('#add-item-form .selector-wrapper .single-option-selector').eq(0).val() + '"]').find('input').click();
-        $('#add-item-form .swatch-element[data-value="' + $('#add-item-form .selector-wrapper .single-option-selector').eq(1).val() + '"]').find('input').click();
-        if (swatch_size == 2) {
-            var _avi_op1 = '';
-            var _avi_op2 = '';
-            var _count = $('#add-item-form #variant-swatch-1 .swatch-element').size();
-            $('#add-item-form #variant-swatch-0 .swatch-element').each(function(ind, value) {
-                var _key = $(this).data('value');
-                var _unavi = 0;
-                $('#add-item-form .single-option-selector').eq(0).val(_key).change();
-                $('#add-item-form #variant-swatch-1 .swatch-element').each(function(i, v) {
-                    var _val = $(this).data('value');
-                    $('#add-item-form .single-option-selector').eq(1).val(_val).change();
-                    if (check_variant == true) {
-                        if (_avi_op1 == '') {
-                            _avi_op1 = _key;
-                        }
-                        if (_avi_op2 == '') {
-                            _avi_op2 = _val;
-                        }
-                    } else {
-                        _unavi += 1;
-                    }
-                })
-                if (_unavi == _count) {
-                    $('#add-item-form #variant-swatch-0 .swatch-element[data-value = "' + _key + '"]').addClass('soldout');
-                    $('#add-item-form #variant-swatch-0 .swatch-element[data-value = "' + _key + '"]').find('input').attr('disabled', 'disabled');
-                }
-            })
-            $('#add-item-form #variant-swatch-1 .swatch-element[data-value = "' + _avi_op2 + '"] input').click();
-            $('#add-item-form #variant-swatch-0 .swatch-element[data-value = "' + _avi_op1 + '"] input').click();
-        } else if (swatch_size == 3) {
-            var _avi_op1 = '';
-            var _avi_op2 = '';
-            var _avi_op3 = '';
-            var _size_op2 = $('#add-item-form #variant-swatch-1 .swatch-element').size();
-            var _size_op3 = $('#add-item-form #variant-swatch-2 .swatch-element').size();
-
-            $('#add-item-form #variant-swatch-0 .swatch-element').each(function(ind, value) {
-                var _key_va1 = $(this).data('value');
-                var _count_unavi = 0;
-                $('#add-item-form .single-option-selector').eq(0).val(_key_va1).change();
-                $('#add-item-form #variant-swatch-1 .swatch-element').each(function(i, v) {
-                    var _key_va2 = $(this).data('value');
-                    var _unavi_2 = 0;
-                    $('#add-item-form .single-option-selector').eq(1).val(_key_va2).change();
-                    $('#add-item-form #variant-swatch-2 .swatch-element').each(function(j, z) {
-                        var _key_va3 = $(this).data('value');
-                        $('#add-item-form .single-option-selector').eq(2).val(_key_va3).change();
-                        if (check_variant == true) {
-                            if (_avi_op1 == '') {
-                                _avi_op1 = _key_va1;
-                            }
-                            if (_avi_op2 == '') {
-                                _avi_op2 = _key_va2;
-                            }
-                            if (_avi_op3 == '') {
-                                _avi_op3 = _key_va3;
-                            }
-                        } else {
-                            _unavi_2 += 1;
-                        }
-                    })
-                    if (_unavi_2 == _size_op3) {
-                        _count_unavi += 1;
-                    }
-                })
-                if (_size_op2 == _count_unavi) {
-                    $('#add-item-form #variant-swatch-0 .swatch-element[data-value = "' + _key_va1 + '"]').addClass('soldout');
-                    $('#add-item-form #variant-swatch-0 .swatch-element[data-value = "' + _key_va1 + '"]').find('input').attr('disabled', 'disabled');
-                }
-            })
-            $('#add-item-form #variant-swatch-0 .swatch-element[data-value = "' + _avi_op1 + '"] input').click();
-        }
-    });
-    $(document).ready(function() {
-        var vl = $('#add-item-form .swatch .color input').val();
-        $('#add-item-form .swatch .color input').parents(".swatch").find(".header span").html(vl);
-        $("#add-item-form .select-swap .color").hover(function() {
-            var value = $(this).data("value");
-            $(this).parents(".swatch").find(".header span").html(value);
-        }, function() {
-            var value = $("#add-item-form .select-swap .color label.sd span").html();
-            $(this).parents(".swatch").find(".header span").html(value);
-        });
     });
 </script>
 @endsection
