@@ -31,6 +31,10 @@ class OrderService
                 'note' => $order['note'],
                 'total_price' => $order['total_price'],
                 'status' => $order['status'],
+                'user_id' => $order['user_id'],
+                'name' => $order['name'],
+                'phoneNumber' => $order['phoneNumber'],
+                'address' => $order['address']
             ]);
             Session::flash('orderCode', $newOrder->code); //đính kèm mã order để tra cứu đơn hàng
             return $newOrder->id;

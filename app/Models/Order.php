@@ -15,7 +15,11 @@ class Order extends Model
         'payment_status',
         'note',
         'total_price',
-        'status'
+        'status',
+        'user_id',
+        'name',
+        'phoneNumber',
+        'address'
     ];
     public function customer()
     {

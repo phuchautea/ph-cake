@@ -9,6 +9,7 @@ use App\Http\Services\CustomerService;
 use App\Http\Services\CartService;
 use App\Http\Services\Product\ProductService;
 use App\Http\Services\Payment\PaymentService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
@@ -50,8 +51,6 @@ class OrderController extends Controller
             'title' => 'Chi tiết đơn hàng',
             'order' => $order,
         ]);
-        
-        
     }
     private function isValidVietnamMobilePhoneNumber($phoneNumber)
     {
@@ -67,6 +66,12 @@ class OrderController extends Controller
         $address = (string)$request->input('address');
         $note = (string)$request->input('note');
         $payment = (string)$request->input('payment');
+        Auth::check() ? $user_id = Auth::user()->id : $user_id = null;
+        // if(Auth::check()){
+        //     $user_id = Auth::user()->id;
+        // }else{
+        //     $user_id = null;
+        // }
         if (!$name) {
             $errors['name'] = "Vui lòng nhập tên";
         }
@@ -104,6 +109,10 @@ class OrderController extends Controller
             $order['payment_method'] = $payment;
             $order['payment_status'] = 'unpaid';
             $order['total_price'] = $total_price;
+            $order['user_id'] = $user_id;
+            $order['name'] = $name;
+            $order['phoneNumber'] = $phoneNumber;
+            $order['address'] = $address;
             Session::put("order", $order);
             // thêm phương thức thanh toán vào session['payment'] và chuyển tới phương thức thanh toán
             switch ($payment) {

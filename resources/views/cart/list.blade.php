@@ -169,13 +169,20 @@
                                                 {{-- <div class="card-header">Thông tin người nhận</div> --}}
                                                 <div class="card-body">
                                                     @csrf
+                                                    @if(!Auth::check())
+                                                    Bạn đã có tài khoản? <a href="{{ Route("login") }}">Đăng nhập</a>
+                                                    @endif
                                                     <div class="form-group">
                                                         <label class="control-label">Họ và tên</label>
-                                                        <input type="text" class="form-control" name="name" id="name" value="Nguyễn Văn A">
+                                                        <input type="text" class="form-control" name="name" id="name" value="@if(Auth::check()){{ Auth::user()->name }}@endif">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Email</label>
+                                                        <input type="email" class="form-control" name="email" id="email" value="@if(Auth::check()){{ Auth::user()->email }}@endif">
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Số điện thoại</label>
-                                                        <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" value="0334455678">
+                                                        <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" value="">
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Địa chỉ</label>
