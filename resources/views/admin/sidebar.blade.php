@@ -26,6 +26,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="/admin/user/list" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Người dùng</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/admin/order/list" class="nav-link">
                             <i class="nav-icon fas fa-sticky-note"></i>
                             <p>Đơn hàng</p>

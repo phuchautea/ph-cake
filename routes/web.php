@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\ManageReviewController;
+use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\Admin\ManageCategoryController;
 use App\Http\Controllers\Admin\ManageProductController;
@@ -69,6 +70,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->middleware('checkRole:admin')->group(function () {
         Route::get('/', [MainController::class, 'index'])->name('admin');
         Route::get('main', [MainController::class, 'index']);
+        #User routes
+        Route::prefix('user')->group(function () {
+            Route::get('list', [ManageUserController::class, 'index']);
+            Route::delete('destroy', [ManageUserController::class, 'destroy']);
+        });
         #Order routes
         Route::prefix('order')->group(function () {
             Route::get('list', [ManageOrderController::class, 'index']);
@@ -77,9 +83,7 @@ Route::middleware('auth')->group(function () {
         #Review routes
         Route::prefix('review')->group(function () {
             Route::get('list', [ManageReviewController::class, 'index']);
-
             Route::delete('destroy', [ManageReviewController::class, 'destroy']);
-
         });
         #Category routes
         Route::prefix('category')->group(function () {
