@@ -108,14 +108,6 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            {{-- <div class="col-md-5 col-sm-12 col-xs-12">
-                                                <div class="sidebox-group">
-                                                    <h4>Ghi chú đơn hàng</h4>
-                                                    <div class="checkout-note clearfix">
-                                                        <textarea id="note" name="note" rows="4" placeholder="Ghi chú"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                             <div class="col-md-7 col-sm-12 col-xs-12 hidden-xs">
                                                 <div class="sidebox-group sidebox-policy">
                                                     <h4>Chính sách mua hàng</h4>
@@ -126,11 +118,6 @@
                                                         <li>Sản phẩm sale chỉ hỗ trợ đổi size (nếu cửa hàng còn) trong 7 ngày trên toàn hệ thống.</li>
                                                     </ul>
                                                 </div>
-                                                {{-- <div class="cart-buttons hidden">
-                                                    <button type="submit" id="update-cart" class="btn-update button dark hidden" name="update" value="">Cập nhật</button>
-                                                    <button type="submit" id="checkout" class="btn-checkout button dark hidden" name="checkout" value="">Thanh toán</button>
-                                                </div> --}}
-
                                             </div>
                                         </div>
                                     </form>
@@ -166,7 +153,6 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="card">
-                                                {{-- <div class="card-header">Thông tin người nhận</div> --}}
                                                 <div class="card-body">
                                                     @csrf
                                                     @if(!Auth::check())
@@ -174,19 +160,19 @@
                                                     @endif
                                                     <div class="form-group">
                                                         <label class="control-label">Họ và tên</label>
-                                                        <input type="text" class="form-control" name="name" id="name" value="@if(Auth::check()){{ Auth::user()->name }}@endif">
+                                                        <input type="text" required class="form-control" name="name" id="name" value="@if(Auth::check()){{ Auth::user()->name }}@endif">
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Email</label>
-                                                        <input type="email" class="form-control" name="email" id="email" value="@if(Auth::check()){{ Auth::user()->email }}@endif">
+                                                        <input type="email" required class="form-control" name="email" id="email" value="@if(Auth::check()){{ Auth::user()->email }}@endif">
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Số điện thoại</label>
-                                                        <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" value="">
+                                                        <input type="number" required class="form-control" name="phoneNumber" id="phoneNumber" value="@if(Auth::check()){{ Auth::user()->phone }}@endif">
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Địa chỉ</label>
-                                                        <input type="text" class="form-control" name="address" id="address" value="82/57 Đ.138 KP2 Q9 TPHCM">
+                                                        <input type="text" required class="form-control" name="address" id="address" value="">
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Ghi chú</label>

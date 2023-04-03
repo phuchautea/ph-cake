@@ -129,7 +129,8 @@
                                             <h3>Viết đánh giá mới</h3>
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <form action="/reviews/" method="POST">
+                                                    <form action="/review/store" method="POST">
+                                                        @csrf
                                                         <div class="card-body">
                                                             <div class="star-rating">
                                                                 <div class="star active" data-value="1"><i class="fa fa-star"></i></div>
@@ -148,34 +149,40 @@
                                                                 <label>Nội dung</label>
                                                                 <textarea rows="5" class="form-control" id="content" name="content"></textarea>
                                                             </div>
-                                                            
                                                             <button type="submit" class="button dark btn-block">Gửi đánh giá</button>
                                                         </div>
                                                     </form>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="media comment">
+                                                        @foreach($reviews as $review)
                                                         <div class="row">
                                                             <div class="col-sm-2" style="text-align:center">
-                                                            <img src="https://via.placeholder.com/64" class="mr-3 rounded-circle" alt="Avatar">
+                                                            <img src="/template/admin/images/avatar.png" class="mr-3 rounded-circle" alt="Avatar">
                                                             </div>
                                                             <div class="col-sm-10">
                                                             <div class="media-body">
-                                                                <h5 class="mt-0">Tên người dùng</h5>
+                                                                <h4 class="mt-0"><b>{{ $review->user->name }}</b></h4>
                                                                 <div class="rating">
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star"></span>
+                                                                    @php
+                                                                        for($i = 1; $i <= 5; $i++){
+                                                                            if($i <= (int)$review->rating){
+                                                                                echo '<span class="fa fa-star checked"></span>';
+                                                                            }else{
+                                                                                echo '<span class="fa fa-star"></span>';
+                                                                            }
+                                                                        }
+                                                                    @endphp
                                                                 </div>
-                                                                <h6 class="mb-0">Tiêu đề bình luận</h6>
-                                                                <p class="mt-0 text-muted">Thời gian</p>
-                                                                <p>Nội dung bình luận</p>
+                                                                <h6 class="mb-0"><b>{{ $review->title }}</b></h6>
+                                                                
+                                                                <p>{{ $review->content }}</p>
+                                                                <p class="mt-0 text-muted">{{ $review->created_at }}</p>
                                                             </div>
                                                             </div>
                                                         </div>
                                                         <hr>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
@@ -207,9 +214,9 @@
                                             .comment h5 {
                                                 margin-top: 0;
                                             }
-                                            .comment .rating {
+                                            /* .comment .rating {
                                                 color: orange;
-                                            }
+                                            } */
                                             .checked {
                                                 color: orange;
                                             }

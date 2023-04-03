@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\ManageReviewController;
 use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\Admin\ManageCategoryController;
 use App\Http\Controllers\Admin\ManageProductController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,7 +62,10 @@ Route::get('/page/store', [PageController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/account', [AccountController::class, 'index'])->name('account');
-
+    Route::prefix('review')->group(function () {
+        Route::post('store', [ReviewController::class, 'store']);
+        Route::delete('destroy', [ReviewController::class, 'destroy']);
+    });
     Route::prefix('admin')->middleware('checkRole:admin')->group(function () {
         Route::get('/', [MainController::class, 'index'])->name('admin');
         Route::get('main', [MainController::class, 'index']);
@@ -68,6 +73,13 @@ Route::middleware('auth')->group(function () {
         Route::prefix('order')->group(function () {
             Route::get('list', [ManageOrderController::class, 'index']);
             Route::post('/edit/{order}', [ManageOrderController::class, 'update']);
+        });
+        #Review routes
+        Route::prefix('review')->group(function () {
+            Route::get('list', [ManageReviewController::class, 'index']);
+
+            Route::delete('destroy', [ManageReviewController::class, 'destroy']);
+
         });
         #Category routes
         Route::prefix('category')->group(function () {

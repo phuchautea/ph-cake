@@ -3,7 +3,8 @@
 <head>
     @include('head')
 </head>
-
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=2340396319493679&autoLogAppEvents=1" nonce="roBBZMfd"></script>
 <body id="kidty-theme" class="index">
     <div class="main-body layoutProduct_scroll">
         <div class="mainHeader--height">
