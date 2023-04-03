@@ -25,8 +25,8 @@
                         </li>
 
                         <li class="active">
-                            <span content="/collections/banh-be-trai">
-                                <span>Bánh bé trai</span>
+                            <span>
+                                <span>{{ isset($category_info) && $category_info != null ? $category_info->name : "Tất cả sản phẩm" }}</span>
                             </span>
                             <meta content="3">
                         </li>

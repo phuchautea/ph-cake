@@ -21,7 +21,7 @@
                         </li>
 
                         <li class="active">
-                            <span content="/products/{{ $product->slug }}">
+                            <span content="/product/{{ $product->slug }}">
                                 <span>{{ $product->name }}</span>
                             </span>
                             <meta content="3">
@@ -111,6 +111,135 @@
                                 <div class="description-content">
                                     <div class="description-productdetail">
                                         {{ $product->description }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row product-detail-main pr_style_03">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#rates" aria-expanded="true">Đánh giá sản phẩm</a></li>
+                                <li class=""><a data-toggle="tab" href="#comments" aria-expanded="false">Nhận xét sản phẩm</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="rates" class="tab-pane fade active in">
+                                    <div class="row">
+                                        <div class="col-md-12" style="margin-top: 10px;">
+                                            <h3>Viết đánh giá mới</h3>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <form action="/reviews/" method="POST">
+                                                        <div class="card-body">
+                                                            <div class="star-rating">
+                                                                <div class="star active" data-value="1"><i class="fa fa-star"></i></div>
+                                                                <div class="star active" data-value="2"><i class="fa fa-star"></i></div>
+                                                                <div class="star active" data-value="3"><i class="fa fa-star"></i></div>
+                                                                <div class="star active" data-value="4"><i class="fa fa-star"></i></div>
+                                                                <div class="star active" data-value="5"><i class="fa fa-star"></i></div>
+                                                            </div>
+                                                            <input type="hidden" id="rating" name="rating" value="5">
+                                                            <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
+                                                            <div class="form-group">
+                                                                <label>Tiêu đề</label>
+                                                                <input type="text" class="form-control" id="title" name="title">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Nội dung</label>
+                                                                <textarea rows="5" class="form-control" id="content" name="content"></textarea>
+                                                            </div>
+                                                            
+                                                            <button type="submit" class="button dark btn-block">Gửi đánh giá</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="media comment">
+                                                        <div class="row">
+                                                            <div class="col-sm-2" style="text-align:center">
+                                                            <img src="https://via.placeholder.com/64" class="mr-3 rounded-circle" alt="Avatar">
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                            <div class="media-body">
+                                                                <h5 class="mt-0">Tên người dùng</h5>
+                                                                <div class="rating">
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                </div>
+                                                                <h6 class="mb-0">Tiêu đề bình luận</h6>
+                                                                <p class="mt-0 text-muted">Thời gian</p>
+                                                                <p>Nội dung bình luận</p>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                            $('.star-rating .star').click(function() {
+                                                var rating = $(this).data('value');
+                                                $('input[name=rating]').val(rating);
+                                                $(this).addClass('active').prevAll('.star').addClass('active');
+                                                $(this).nextAll('.star').removeClass('active');
+                                            });
+                                        </script>
+                                        <style>
+                                            .comment {
+                                                margin-bottom: 20px;
+                                                border: 1px solid #ccc;
+                                                padding: 20px;
+
+                                                overflow-y: scroll;
+                                                min-height: 100px;
+                                                max-height: 500px;
+                                                width: 100%;
+                                            }
+                                            .comment img {
+                                                width: 64px;
+                                                height: 64px;
+                                            }
+                                            .comment h5 {
+                                                margin-top: 0;
+                                            }
+                                            .comment .rating {
+                                                color: orange;
+                                            }
+                                            .checked {
+                                                color: orange;
+                                            }
+                                            
+                                            .fb-comments {
+                                                overflow-y: scroll;
+                                                height: 500px;
+                                                width: 100%;
+                                            }
+
+                                            .star-rating {
+                                                display: flex;
+                                                justify-content: center;
+                                            }
+
+                                            .star {
+                                                margin-top: 10px;
+                                                font-size: 20px;
+                                                margin-right: 5px;
+                                            }
+
+                                            div.star.active i {
+                                                color: gold;
+                                            }
+                                        </style>
+                                    </div>
+                                </div>
+                                <div id="comments" class="tab-pane fade">
+                                    <div class="col-md-12" style="text-align:center">
+                                        <div class="fb-comments" data-href="{{ url('/product/'.$product->slug) }}" data-width="1000" data-numposts="3"></div>
                                     </div>
                                 </div>
                             </div>
