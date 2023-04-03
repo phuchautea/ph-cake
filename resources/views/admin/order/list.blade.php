@@ -13,11 +13,6 @@
                 <div class="modal-body">
                     <form>
                         <div class="card-body">
-                            {{-- <div class="form-group">
-                                <label>Tên danh mục</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Bánh Kem" value="Bánh Trang Trí">
-                            </div> --}}
-                            
                             <div class="form-group">
                                 <label>Tình trạng thanh toán</label>
                                 <select class="form-control" id="payment_status_{{ $order->id }}">
@@ -115,10 +110,6 @@
                                     
                                     <tr>
                                         <td style="width: 100px">
-                                            {{-- <a href="/admin/order/edit/{{ $order->id }}"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa fa-edit"></i>
-                                            </a> --}}
                                             <a href="#" class="btn btn-primary btn-sm"
                                                 data-toggle="modal" data-target="#edit_{{ $order->id }}">
                                                 <i class="fa fa-edit"></i>
@@ -131,9 +122,10 @@
                                         <td>{{ $order->id }}</td>
                                         <td>#{{ $order->code }}</td>
                                         <td>
-                                            {{ $order->customer->name }}<br />
-                                            {{ $order->customer->phoneNumber }}<br />
-                                            {{ $order->customer->address }}<br />
+                                            {{ $order->name }}<br />
+                                            {{ $order->address }}<br />
+                                            {{ $order->email }}<br />
+                                            {{ $order->phoneNumber }}<br />
                                         </td>
                                         <td><img style="width:22px" src="/storage/images/payment/{{ $order->payment_method }}.png"></td>
                                         <td>{!! $orderService->payment_status($order->payment_status) !!}</td>
@@ -171,11 +163,9 @@
                     var result = JSON.parse(result);
                     if(result['status'] == false){
                         alert(result['message']);
-                        //toastr.error(result['message']);
                         $("#btn_edit_"+id+"").html('Cập nhật').attr('disabled', false);
                     }else{
                         alert(result['message']);
-                        //toastr.success(result['message']);
                         $("#btn_edit_"+id+"").html('Thành công').attr('disabled', true);
                         setTimeout(function(){
                             location.reload();
