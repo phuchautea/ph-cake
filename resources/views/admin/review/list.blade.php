@@ -25,7 +25,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- {!! $categoryWithParent !!} --}}
                                 @foreach($reviews as $review)
                                     <tr>
                                         <td style="width: 100px">
@@ -43,13 +42,14 @@
                                         <td>
                                             <div class="rating">
                                                 @php
-                                                for($i = 1; $i <= 5; $i++){ if($i <=(int)$review->rating){
-                                                    echo '<span class="fa fa-star checked"></span>';
-                                                    }else{
-                                                    echo '<span class="fa fa-star"></span>';
+                                                for ($i = 1; $i <= 5; $i++) {
+                                                    if ($i <=(int)$review->rating) {
+                                                        echo '<span class="fa fa-star checked"></span>';
+                                                    } else {
+                                                        echo '<span class="fa fa-star"></span>';
                                                     }
-                                                    }
-                                                    @endphp
+                                                }
+                                                @endphp
                                             </div>
                                         </td>
                                         <td><input class="form-control" value="{{ $review->title }}"></td>
@@ -64,8 +64,8 @@
                 </div>
                 <style>
                     .checked {
-                                                color: orange;
-                                            }
+                        color: orange;
+                    }
                 </style>
                 <div class="card-footer">
                     <ul class="pagination pagination-sm m-0 float-right">
