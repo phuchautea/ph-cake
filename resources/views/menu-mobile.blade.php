@@ -33,12 +33,12 @@
                                                                                 </i>
                                                                             </a>
                                                                         </li>
-                                                                        <li class="">
+                                                                        {{-- <li class="">
                                                                             <a class="parent" href="/blogs/">Blog</a>
                                                                         </li>
                                                                         <li class="">
                                                                             <a class="parent" href="/page/about">Giới thiệu</a>
-                                                                        </li>
+                                                                        </li> --}}
                                                                         <li class="">
                                                                             <a class="parent" href="/page/store">Cửa hàng</a>
                                                                         </li>

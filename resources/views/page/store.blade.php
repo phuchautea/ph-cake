@@ -11,7 +11,7 @@
                             <meta itemprop="position" content="1">
                         </li>
                         <li class="active">
-                            <span content="https://tiembanhvani.com/pages/about-us">
+                            <span>
                                 <span>Cửa hàng</span>
                             </span>
                             <meta itemprop="position" content="2">

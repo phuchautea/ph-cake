@@ -9,7 +9,7 @@
                                                     </a>
                                                 </li>
                                                 @include('category-menu')
-                                                <li class="">
+                                                {{-- <li class="">
                                                     <a href="/blogs/" title="Blog">
                                                         Blog
                                                     </a>
@@ -18,7 +18,7 @@
                                                     <a href="/page/about" title="Giới thiệu">
                                                         Giới thiệu
                                                     </a>
-                                                </li>
+                                                </li> --}}
                                                 <li class="">
                                                     <a href="/page/store" title="Cửa hàng">
                                                         Cửa hàng
