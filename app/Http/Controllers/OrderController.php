@@ -50,7 +50,7 @@ class OrderController extends Controller
         return view('order.search', [
             'title' => 'Chi tiết đơn hàng',
             'order' => $order,
-        ]);
+        ])->with('orderService', $this->orderService);
     }
     private function isValidVietnamMobilePhoneNumber($phoneNumber)
     {

@@ -23,12 +23,14 @@
 								    <p>Tên người nhận: <b>{{ $order[0]->customer->name }}</b></p>
 								    <p>Số điện thoại: <b>{{ $order[0]->customer->phoneNumber }}</b></p>
 								    <p>Địa chỉ: <b>{{ $order[0]->customer->address }}</b></p>
+                                    <p>Tình trạng đơn hàng: {!! $orderService->status($order[0]->status) !!}</p>
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <p>Phương thức thanh toán: <img style="width:22px" src="/storage/images/payment/{{ $order[0]->payment_method }}.png"></p>
+                                    <p>Phương thức thanh toán: <img style="width:50px" src="/storage/images/payment/{{ $order[0]->payment_method }}.png"></p>
                                     <p>Tổng tiền: <b>{{ number_format($order[0]->total_price) }}đ</b></p>
                                     <p>Ghi chú: <b>{{ $order[0]->note }}</b></p>
                                     <p>Thời gian tạo: <b>{{ $order[0]->created_at }}</b></p>
+                                    <p>Tình trạng thanh toán: {!! $orderService->payment_status($order[0]->payment_status) !!}</p>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-12" style="text-align: center">
                                     <img src="https://chart.googleapis.com/chart?chs=130x130&cht=qr&chl=http://{{ $_SERVER['HTTP_HOST'] }}/order/search/{{ $order[0]->code}}">
