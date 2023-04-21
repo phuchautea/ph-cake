@@ -45,6 +45,7 @@ Route::get('/order/search/{code}', [OrderController::class, 'search']);
 Route::get('/carts/delete/{id}', [CartController::class, 'remove']);
 
 Route::get('/pay/momoResult', [PaymentController::class, 'momoResult']);
+Route::get('/pay/vnpayResult', [PaymentController::class, 'vnpayResult']);
 Route::post('/pay/ipnMomoResult', [PaymentController::class, 'ipnMomoResult']);
 Route::get('/order/success', [OrderController::class, 'success']);
 Route::get('/pay/error', [PaymentController::class, 'error']);

@@ -89,7 +89,7 @@ class OrderController extends Controller
         if (!$address) {
             $errors['address'] = "Vui lòng nhập địa chỉ";
         }
-        if ($payment != "cash" && $payment != "momo" && $payment && "vnpay") {
+        if ($payment != "cash" && $payment != "momo" && $payment != "vnpay") {
             $errors['payment'] = "Phương thức thanh toán không hợp lệ";
         }
         if (!empty($errors)) {
@@ -130,6 +130,7 @@ class OrderController extends Controller
                     return $this->paymentService->MomoProcess($total_price);
                     break;
                 case "vnpay":
+                    return $this->paymentService->VNPayProcess($total_price);
                     break;
                 default:
                     $customer_id = $this->customerService->add(Session::get("customer")); // Thêm vào customer

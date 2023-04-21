@@ -64,6 +64,64 @@ class PaymentService
         }
         return redirect('/pay/error'); // thanh toán thất bại
     }
+    public function VNPayProcess($amount)
+    {
+        return $this->vnpayService->Processing($amount);
+    }
+    public function vnpayResult(Request $request)
+    {
+        $vnp_HashSecret = env('vnp_HashSecret'); //Chuỗi bí mật
+        $vnp_SecureHash = $request->get('vnp_SecureHash');
+        $inputData = array();
+        foreach ($_GET as $key => $value) {
+            if (substr($key, 0, 4) == "vnp_") {
+                $inputData[$key] = $value;
+            }
+        }
+
+        unset($inputData['vnp_SecureHash']);
+        ksort($inputData);
+        $i = 0;
+        $hashData = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashData = $hashData . '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashData = $hashData . urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+        }
+
+        $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+        if ($secureHash == $vnp_SecureHash) {
+            if ($request->get('vnp_ResponseCode') == '00') {
+                $carts = Session::get('carts');
+                $order = Session::get('order');
+                $customer_id = $this->customerService->add(Session::get("customer")); // Thêm vào customer
+                $order['customer_id'] = $customer_id;
+                $order['payment_status'] = 'paid';
+                $order['status'] = '1';
+                if ($customer_id != 0) {
+                    $order_id = $this->orderService->add($order); // Thêm vào order
+                    if ($order_id != 0) {
+                        $order_details = [];
+                        $order_details['carts'] = $carts;
+                        $order_details['order_id'] = $order_id;
+                        $this->orderDetailService->add($order_details);
+                        $this->cartService->remove(0); // xóa hết giỏ hàng
+                        Session::pull('customer');
+                        Session::pull('order');
+                    }
+                }
+                return redirect('/order/success');
+                // thanh toán thành công, đính kèm mã order để tra cứu, bằng session::flash
+            } else {
+                return redirect('/pay/error'); // thanh toán thất bại (GD không thành công)
+            }
+        } else {
+            return redirect('/pay/error'); // thanh toán thất bại (Chữ ký không hợp lệ)
+        }
+    }
     public function ipnMomoResult(Request $request)
     {
         $data = json_decode(file_get_contents('php://input'), true);
