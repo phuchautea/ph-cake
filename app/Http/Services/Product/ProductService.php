@@ -12,8 +12,6 @@ class ProductService
     {
         try {
             $price = str_replace(',', '', $request->input('price'));
-            //$price = str_replace(',', '.', $request->input('price'));
-            //$price = str_replace(',', '', $request->input('price'));
             Product::create([
                 'name' => (string)$request->input('name'),
                 'slug' => Str::slug($request->input('name'), '-'),
