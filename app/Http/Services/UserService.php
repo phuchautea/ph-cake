@@ -9,7 +9,8 @@ use Illuminate\Support\Str;
 
 class UserService
 {
-    public function getAll() {
+    public function getAll()
+    {
         return User::all()->sortByDesc('created_at');
     }
     public function getAllPaginate()

@@ -86,7 +86,8 @@ class CartService
         return true;
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         try {
             $carts = Session::get('carts');
 

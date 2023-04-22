@@ -9,7 +9,8 @@ use Illuminate\Support\Str;
 
 class OrderDetailService
 {
-    public function add($order_details){
+    public function add($order_details)
+    {
         $carts = $order_details['carts'];
         foreach ($carts as $product_id => $quantity){
             $product = Product::find($product_id);
